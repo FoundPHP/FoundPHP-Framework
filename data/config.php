@@ -2,7 +2,7 @@
 defined('FoundPHP.com') or die('access denied!');
 /* ----------------------------- 基本设置 ----------------------------- */
 $PATH				= './';							//当前目录
-$PATH_RAND			= '';					//随机目录名安装时生成
+$PATH_RAND			= 'y338265D';					//随机目录名安装时生成
 $RAND_DIR			= 'data/FoundPHP_'.$PATH_RAND.'/';	//随机目录
 $FILE_DIR			= 'data/files/';
 $STYLE_DIR			= 'data/style/';
@@ -70,7 +70,7 @@ $config['set']['site_author']	= '';				//作者信息
 $config['set']['site_key']		= '';					//网站关键词
 $config['set']['site_desc']		= '';				//网站介绍
 
-$config['set']['site_url'] 		= 'http://foundphp.com';	//网站首页
+$config['set']['site_url'] 		= 'http://localhost/dev/000/';	//网站首页
 $config['set']['wx_url'] 		= 'http://wx.foundphp.com/';	//微信首页
 
 $config['set']['limit']			= 20;							//默认分页数
@@ -149,7 +149,7 @@ $config['mail']['user']		= 'admin@xxx.com';		//认证用户名
 $config['mail']['pass']		= '';				//密码
 
 /* ----------------------------- 编辑器配置 ----------------------------- */
-$config['edit']['type']			= 'mdeditor';		//text则为文本编辑器，mdeditor MarkDownEditor, kindeditor kind编辑器, ueditor 百度编辑器
+$config['edit']['type']			= 'text';		//text则为文本编辑器，mdeditor MarkDownEditor, kindeditor kind编辑器, ueditor 百度编辑器
 $config['edit']['lang']			= $FOUNDPHP_LANG;	//支持的语言
 $config['edit']['lang']			= 'zh';			//支持的语言
 $config['edit']['php']			= 'index.php?a=upfile';		//上传文件路径
