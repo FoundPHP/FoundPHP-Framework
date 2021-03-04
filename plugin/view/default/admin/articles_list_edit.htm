@@ -1,0 +1,204 @@
+<link rel="stylesheet" href="images/jquery.tag-editor.css">
+<script src="images/jquery-ui.min.js"></script>
+<script src="images/jquery.tag-editor.js"></script>
+
+
+<form class="form-horizontal form-label-left input_mask" enctype="multipart/form-data" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+<div class="col-md-12 col-xs-12">
+	<div class="x_panel">
+	<div class="x_title">
+	  <h2>{title} <small></small></h2>
+	  <div class="clearfix"></div>
+	</div>
+	<div class="x_content">
+		<br />
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>文章类型</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<select class="form-control" name="cate_id">
+							<option value="0">请选择文章类型</option>
+							{cate_ary}
+						</select>
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>文章主标题</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<input type="text" class="fps-ipt fps-blue" name="titles" id="titles" value="{titles}" placeholder="<lang>例如：今日发布最新的xxx</lang>">
+					</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>文章子标题</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<input type="text" class="fps-ipt fps-blue" name="subject" id="subject" value="{subject}" placeholder="<lang>例如：今日发布最新的xxx</lang>">
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>简介</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<textarea rows="2" class="form-control" name="description" id="description" value="{description}" cols="20">{description}</textarea>
+						<small><lang>介绍当前文章的内容与简介。</lang></small>
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>关键词</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12" style="padding-top:8px">
+					
+						<textarea id="key_rel" name="rele_key"></textarea>
+						<!-- DEL -->
+						<!-- $keyword_ary AS $k=>$v -->
+							<label><input  {run:echo in_array($v['cate_id'],$sel_kid)?"checked":""} class="flat" name="rele_key[]" type="checkbox" value="{v['cate_id']}">{v['cate_name']}</label>
+						<!-- END  -->
+						<br>
+						<!-- END -->
+						<small><lang>如有和此文章相关的关键词，可在此选择</lang></small>
+					</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>缩略图</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<input type="file" name="attach" size="20">
+						<!-- IF($thumbnail) -->
+						<img src="{thumbnail}" height="100"> 
+						<button class="btn btn-xs btn-danger" type="button" style="margin-right:5px;margin-bottom:5px;" onclick="javascript:if(confirm('您确定要删除吗?'))location='admin.php?a={a}&id={id}&t=edit&o=del';return false;">
+							<i class="fa fa-trash-o">&nbsp;删除</i>
+						</button>
+						<!-- END -->
+					</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>内容</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						{run:echo edit(array('id'=>'content','data'=>$content));}
+					</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>相关文章</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<textarea id="art_rel" name="rele_article"></textarea>
+						<!-- DEL -->
+						<select name="rele_article[]" id="pre-selected-options" multiple >
+							<!-- $rele_ls AS $k=>$v -->
+							<option  value="{v['id']}" {run:echo in_array($v['id'],$sel_aid)?"selected":""}>{v['titles']}</option>
+							<!-- END  -->
+						</select>
+						<!-- END -->
+						<small><lang>如有和此文章相关的文章，可在此选择</lang></small>
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>SEO标题</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<input type="text" class="fps-ipt fps-blue" name="smarty_title" id="smarty_title" value="{smarty_title}" placeholder="<lang>例如：全新xxx的发布会</lang>">
+						<small><lang>SEO 优化标题与文章标题不同可达到更好的搜索效果。</lang></small>
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>SEO 关键词</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<input type="text" class="fps-ipt fps-blue" name="keywords" id="keywords" value="{keywords}" placeholder="<lang>例如：xxx，发布会，全新</lang>">
+						<small><lang>方便搜索引擎寻找的关键词，关键词之间用逗号分割。</lang></small>
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-1 col-sm-1 col-xs-12"><lang>文章链接</lang></label>
+					<div class="col-md-11 col-sm-11 col-xs-12">
+						<input type="text" class="fps-ipt fps-blue" name="pageurl" id="pageurl" value="{pageurl}" placeholder="<lang>例如：http://www.FoundPHP.com</lang>">
+						<small><lang>如果有文章链接则优先跳转到指定页眉。</lang></small>
+					</div>
+			</div>
+			
+			
+			
+		<div class="ln_solid"></div>
+		<div class="form-group">
+		<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><i data-fip-value="fa fa-check" class="fa fa-check"></i> <lang>保存</lang></button>
+		<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);return false;"><i class="fa fa-mail-reply-all"></i> <lang>返回</lang></button>
+		</div>
+		</div>
+	</div>
+	</div>
+</div>
+</form> 
+<script>
+	(function($){var proto=$.ui.autocomplete.prototype,initSource=proto._initSource;function filter(array,term){var matcher=new RegExp($.ui.autocomplete.escapeRegex(term),"i");return $.grep(array,function(value){return matcher.test($("<div>").html(value.label||value.value||value).text());});}$.extend(proto,{_initSource:function(){if(this.options.html&&$.isArray(this.options.source)){this.source=function(request,response){response(filter(this.options.source,request.term));};}else{initSource.call(this);}},_renderItem:function(ul,item){return $("<li></li>").data("item.autocomplete",item).append($("<a></a>")[this.options.html?"html":"text"](item.label)).appendTo(ul);}});})(jQuery);
+	var cache = {};
+	function artsearch(request, response) {
+		var term = request.term;
+		if (term in cache) { response(cache[term]); return; }
+		
+		$.ajax({
+			url: '?a={a}&t=art_rele&id={id}&token={run:echo session_id()}',
+			//dataType: 'JSONP',
+			type: "POST",
+			data: { format: 'json','o':1, q: term },
+			success: function(msg) {
+				var data = eval("("+msg+")")
+				var suggestions = [];
+				var results = data.list;
+				
+				if(data==null){
+					results = [];
+				}
+				$.each(results, function() {
+					try {
+						var s = this;
+						suggestions.push({label: s.replace(term, '<b>'+term+'</b>'), value: s});
+					} catch(e){}
+				});
+				cache[term] = suggestions;
+				response(suggestions);
+			}
+		});
+	}
+	var cache_k = {};
+	function keysearch(request, response) {
+		var term = request.term;
+		if (term in cache_k) { response(cache_k[term]); return; }
+		
+		$.ajax({
+			url: '?a={a}&t=key_rele&token={run:echo session_id()}',
+			//dataType: 'JSONP',
+			type: "POST",
+			data: { format: 'json','o':2, q: term },
+			success: function(msg) {
+				var data = eval("("+msg+")")
+				var suggestions_k = [];
+				var results = data.list;
+				
+				if(data==null){
+					results = [];
+				}
+				$.each(results, function() {
+					try {
+						var s = this;
+						suggestions_k.push({label: s.replace(term, '<b>'+term+'</b>'), value: s});
+					} catch(e){}
+				});
+				cache_k[term] = suggestions_k;
+				response(suggestions_k);
+			}
+		});
+	}
+	$(function() {
+	  
+		$('#art_rel').tagEditor({
+			initialTags: [{run:echo $sel_aid?implode(',',$sel_aid):''}],
+			//autocomplete: { delay: 0, position: { collision: 'flip' }, source: ['1'] },
+			autocomplete: { source: artsearch, minLength: 1, delay: 250, html: true, position: { collision: 'flip' } },
+			forceLowercase: false,
+			placeholder: '输入想关联的文章标题'
+		});
+		$('#key_rel').tagEditor({
+			initialTags: [{run:echo $sel_aid?implode(',',$sel_kid):''}],
+			autocomplete: { source: keysearch, minLength: 1, delay: 250, html: true, position: { collision: 'flip' } },
+			forceLowercase: false,
+			placeholder: '输入想关联的关键词'
+		});
+	});
+</script>

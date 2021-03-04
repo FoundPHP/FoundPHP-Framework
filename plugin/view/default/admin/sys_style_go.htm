@@ -1,0 +1,221 @@
+﻿<script>
+//选择样式
+function click_style(id){
+$('#style'+id).prop("checked","checked").siblings().removeAttr("checked");
+$('#setstyle').val(id);
+sel_style(id);
+return false;
+}
+//选择样式
+function click_color(id){
+$('#color'+id).prop("checked","checked").siblings().removeAttr("checked");
+$('#setcolor').val(id);
+sel_color(id);
+return false;
+}
+function sel_style(id){
+	for (var i=0;i<=99;i++) {
+		if (i==id){
+		$('#ss'+id).css("border","1px solid red");
+		}else{
+		$('#ss'+i).css("border","1px solid #ddd");
+		}
+	}
+	return false;
+}
+function sel_color(id){
+	for (var i=0;i<=10;i++) {
+		if (i==id){
+		$('#sc'+id).css("border","1px solid red");
+		}else{
+		$('#sc'+i).css("border","1px solid #ddd");
+		}
+	}
+	return false;
+}
+//预览
+
+$(document).ready(function(){
+    $("#preview").click(function(){
+	time = $('#time').val();
+	time = 99999;
+	color = $('#setcolor').val();
+	style = $('#setstyle').val();
+	$("#preview_frame").attr("src","?a={a}&t=go_view&setcolor="+color+"&setstyle="+style);
+    });
+});
+</script>
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>页面切换设置</lang> <small><lang>每个页面跳转的动画效果</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+<input name="setstyle" id="setstyle" value="{style}" type="hidden">
+<input name="setcolor" id="setcolor" value="{color}" type="hidden">
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>开启页面动画</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+<div class="">
+  <label>
+	<input type="checkbox" name="load" value="1" class="js-switch" {run:echo $load?'checked':''} />
+  </label>
+</div>
+
+  </div>
+</div>
+<div class="x_title">
+  <h2><lang>显示样式</lang></h2>
+  <div class="clearfix"></div>
+</div>
+
+<div class="attachment">
+	<ul>
+		<li>
+		<a href="#" onclick="click_style(0);return false;" class="atch-thumb"><img src="{style_dir}css/pace/0.gif" id="ss0"></a>
+		<input type="radio" value="0" name="style" id="style0" {run:echo $style==0?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>大小圆变化</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(1);return false;" class="atch-thumb"><img src="{style_dir}css/pace/1.gif" id="ss1"></a>
+		<input type="radio" value="1" name="style" id="style1" {run:echo $style==1?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>旋转原点</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(2);return false;" class="atch-thumb"><img src="{style_dir}css/pace/2.gif" id="ss2"></a>
+		<input type="radio" value="2" name="style" id="style2" {run:echo $style==2?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>变形方块</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(3);return false;" class="atch-thumb"><img src="{style_dir}css/pace/3.gif" id="ss3"></a>
+		<input type="radio" value="3" name="style" id="style3" {run:echo $style==3?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>大小圆旋转</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(4);return false;" class="atch-thumb"><img src="{style_dir}css/pace/4.gif" id="ss4"></a>
+		<input type="radio" value="4" name="style" id="style4" {run:echo $style==4?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>闪烁方块</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(5);return false;" class="atch-thumb"><img src="{style_dir}css/pace/5.gif" id="ss5"></a>
+		<input type="radio" value="5" name="style" id="style5" {run:echo $style==5?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动长条</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(6);return false;" class="atch-thumb"><img src="{style_dir}css/pace/6.gif" id="ss6"></a>
+		<input type="radio" value="6" name="style" id="style6" {run:echo $style==6?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动圆型</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(7);return false;" class="atch-thumb"><img src="{style_dir}css/pace/7.gif" id="ss7"></a>
+		<input type="radio" value="7" name="style" id="style7" {run:echo $style==7?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动圆型</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(8);return false;" class="atch-thumb"><img src="{style_dir}css/pace/8.gif" id="ss8"></a>
+		<input type="radio" value="8" name="style" id="style8" {run:echo $style==8?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动圆型</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(9);return false;" class="atch-thumb"><img src="{style_dir}css/pace/9.gif" id="ss9"></a>
+		<input type="radio" value="9" name="style" id="style9" {run:echo $style==9?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动圆型</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(10);return false;" class="atch-thumb"><img src="{style_dir}css/pace/10.gif" id="ss10"></a>
+		<input type="radio" value="10" name="style" id="style10" {run:echo $style==10?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动圆型</lang></div>
+		</li>
+		<li>
+		<a href="#" onclick="click_style(11);return false;" class="atch-thumb"><img src="{style_dir}css/pace/11.gif" id="ss11"></a>
+		<input type="radio" value="11" name="style" id="style11" {run:echo $style==11?'checked':''} name="style" class="hide">
+		<div class="text-center"><lang>波动圆型</lang></div>
+		</li>
+	</ul>
+</div>
+
+
+<div class="x_title">
+  <h2><lang>样式色调</lang></h2>
+  <div class="clearfix"></div>
+</div>
+
+<div class="attachment">
+	<ul>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(0);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/black.gif" id="sc0"></a>
+		<input type="radio" value="0" name="color" id="color0" {run:echo $color==0?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(1);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/white.gif" id="sc1"></a>
+		<input type="radio" value="1" name="color" id="color1" {run:echo $color==1?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(2);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/silver.gif" id="sc2"></a>
+		<input type="radio" value="2" name="color" id="color2" {run:echo $color==2?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(3);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/green.gif" id="sc3"></a>
+		<input type="radio" value="3" name="color" id="color3" {run:echo $color==3?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(4);return false;" class="atch-thumb"><img style="height: 40px;"src="{style_dir}css/pace/orange.gif" id="sc4"></a>
+		<input type="radio" value="4" name="color" id="color4" {run:echo $color==4?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(5);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/pink.gif" id="sc5"></a>
+		<input type="radio" value="5" name="color" id="color5" {run:echo $color==5?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(6);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/purple.gif" id="sc6"></a>
+		<input type="radio" value="6" name="color" id="color6" {run:echo $color==6?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(7);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/red.gif" id="sc7"></a>
+		<input type="radio" value="7" name="color" id="color7" {run:echo $color==7?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(8);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/blue.gif" id="sc8"></a>
+		<input type="radio" value="8" name="color" id="color8" {run:echo $color==8?'checked':''} class="hide">
+		</li>
+		<li style="width: 50px;">
+		<a href="#" onclick="click_color(9);return false;" class="atch-thumb"><img style="height:40px;"src="{style_dir}css/pace/yellow.gif" id="sc9"></a>
+		<input type="radio" value="9" name="color" id="color9" {run:echo $color==9?'checked':''} class="hide">
+		</li>
+	</ul>
+</div>
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button> <button type="button" class="btn btn-primary" id="preview"><lang>预览</lang></button></div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>预览效果</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content" style="height:500px;">
+{run:echo msg_go()}
+<iframe name="preview_frame" id="preview_frame" width="100%" height="100%" src="?a={a}&t=go_view&setcolor={color}&setstyle={style}" border="0" frameborder="0"></iframe>
+ 
+</div>
+</div>
+</div>
+
+
+<script>sel_style({style});sel_color({color});</script>

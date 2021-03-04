@@ -1,0 +1,48 @@
+
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+
+<div class="col-md-12 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>{title} <small></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>上级</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<select class="form-control" name="fid">
+						<option value=''><lang>顶级</lang></option>
+						{tree}
+					</select>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>名称</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="cate_name" id="cate_name" value="{cate_name}" required="required" >
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>排序</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="orders" id="orders" value="{orders}">
+				</div>
+		</div>
+	
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button>
+	<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);return false;">返回</button>
+	</div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+

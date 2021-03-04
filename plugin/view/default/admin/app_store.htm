@@ -1,0 +1,169 @@
+<style>
+.ui-ribbon-container {
+	position: relative;
+	height: 330px;
+}
+.ui-ribbon-container .ui-free {
+	background-color: #fd5353!important;
+}
+.ui-ribbon-container .ui-free:after, .ui-ribbon-container .ui-free:before {
+	border-top: 2px solid #aaa;
+	content: ""!important;
+	border-left: 0px solid transparent;
+	border-right: 0px solid transparent;
+}
+#FoundPHP-type{font-size:16px;}
+</style>
+
+
+<div class="title_left">
+<h3>{title}</h3>
+</div>
+<div class="title_right">
+	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="<lang>搜索应用</lang>">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button">Go!</button>
+			</span>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12 text-left">
+	<ul class="pagination pagination-split" id="FoundPHP-type">
+	<!-- $foundphp_type AS $k=>$v -->
+	<li><a href="{page_url}&id={v['id']}" {run:echo $id==$v['id']?'style="background-color: #999;color:#fff;"':''}><!-- IF(!empty($v['icon'])) --><i class="{v['icon']}"></i> <!-- END -->{v['name']}{run:echo ($v['numbers']>0?'('.$v['numbers'].')':'')}</a></li>
+	<!-- END -->
+	</ul>
+</div>
+
+
+
+
+<div class="row">
+	<div class="col-md-3 col-xs-12 widget widget_tally_box">
+		<div class="x_panel ui-ribbon-container fixed_height_390">
+			<div class="x_title">
+				<h2>系统</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div style="text-align: center; margin-bottom: 17px">
+				<img src="images/qrcode.jpg" height='120'>
+				</div>
+				<h3 class="name_title">Ease Template</h3>
+				<p>v1.21.0208 / FoundPHP Framework</p>
+				<div class="divider"></div>
+				<p>简单介绍</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-xs-12 widget widget_tally_box">
+		<div class="x_panel ui-ribbon-container fixed_height_390">
+			<div class="ui-ribbon-wrapper">
+				<div class="ui-ribbon">5元</div>
+			</div>
+			<div class="x_title">
+				<h2>系统</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div style="text-align: center; margin-bottom: 17px">
+				<img src="images/qrcode.jpg" height='120'>
+				</div>
+				<h3 class="name_title">Ease Template</h3>
+				<p>v1.21.0208 / FoundPHP Framework</p>
+				<div class="divider"></div>
+				<p>简单介绍</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-xs-12 widget widget_tally_box">
+		<div class="x_panel ui-ribbon-container fixed_height_390">
+			<div class="ui-ribbon-wrapper">
+				<div class="ui-ribbon ui-free">免费</div>
+			</div>
+			<div class="x_title">
+				<h2>系统</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div style="text-align: center; margin-bottom: 17px">
+				<img src="images/qrcode.jpg" height='120'>
+				</div>
+				<h3 class="name_title">Ease Template</h3>
+				<p>v1.21.0208 / FoundPHP Framework</p>
+				<div class="divider"></div>
+				<p>简单介绍</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-xs-12 widget widget_tally_box">
+		<div class="x_panel ui-ribbon-container fixed_height_390">
+			<div class="ui-ribbon-wrapper">
+				<div class="ui-ribbon">9.9元</div>
+			</div>
+			<div class="x_title">
+				<h2>系统</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div style="text-align: center; margin-bottom: 17px">
+				<img src="images/qrcode.jpg" height='120'>
+				</div>
+				<h3 class="name_title">Ease Template</h3>
+				<p>v1.21.0208 / FoundPHP Framework</p>
+				<div class="divider"></div>
+				<p>简单介绍</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-xs-12 widget widget_tally_box">
+		<div class="x_panel ui-ribbon-container fixed_height_390">
+			<div class="ui-ribbon-wrapper">
+				<div class="ui-ribbon">免费</div>
+			</div>
+			<div class="x_title">
+				<h2>系统</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div style="text-align: center; margin-bottom: 17px">
+				<img src="images/qrcode.jpg" height='120'>
+				</div>
+				<h3 class="name_title">Ease Template</h3>
+				<p>v1.21.0208 / FoundPHP Framework</p>
+				<div class="divider"></div>
+				<p>简单介绍</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3 col-xs-12 widget widget_tally_box">
+		<div class="x_panel ui-ribbon-container fixed_height_390">
+			<div class="ui-ribbon-wrapper">
+				<div class="ui-ribbon">免费</div>
+			</div>
+			<div class="x_title">
+				<h2>系统</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div style="text-align: center; margin-bottom: 17px">
+				<img src="images/qrcode.jpg" height='120'>
+				</div>
+				<h3 class="name_title">Ease Template</h3>
+				<p>v1.21.0208 / FoundPHP Framework</p>
+				<div class="divider"></div>
+				<p>简单介绍</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+

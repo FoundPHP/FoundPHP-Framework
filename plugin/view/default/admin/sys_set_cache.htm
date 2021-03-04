@@ -1,0 +1,124 @@
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>{title} <small><lang>解决页面不能更新问题</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>模板缓存</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="CacheDir" value="1" class="js-switch" checked/>
+	  </label><small>&nbsp;&nbsp;<lang>页面的模版缓存</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>静态页面</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="HtmDir" value="1" class="js-switch"/>
+	  </label><small>&nbsp;&nbsp;<lang>生成静态页删除</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>语言包</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="LangDir" value="1" class="js-switch"/>
+	  </label><small>&nbsp;&nbsp;<lang>多语言包缓存清理</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>日志文件</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="LogDir" value="1" class="js-switch"/>
+	  </label><small>&nbsp;&nbsp;<lang>操作记录文件：</lang>{file_size}MB</small>
+  </div>
+</div>
+
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>路经地址</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>缓存地址</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <h4>{run:echo dirname($config['tpl']['CacheDir'])}</h4>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>视图地址</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <h4>{run:echo dirname($config['tpl']['TemplateDir'])}</h4>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>静态地址</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <h4>{config['tpl']['HtmDir']}</h4>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>语言包地址</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <h4>{config['tpl']['LangDir']}</h4>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>样式地址</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <h4>{style_dir}</h4>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>日志文件</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <h4>{run:echo './data/log_'.$PATH_RAND}</h4>
+  </div>
+</div>
+
+
+
+	
+</div>
+</div>
+</div>
+</form>
+
+
+
+

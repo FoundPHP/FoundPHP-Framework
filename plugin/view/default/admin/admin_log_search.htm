@@ -1,0 +1,91 @@
+<div class="x_title">
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+	<div class="col-md-12 col-sm-12 col-xs-12 ">
+		<h2><lang>数据搜索</lang></h2>
+	</div>
+	
+
+		<!-- $_search_input AS $k=>$v --> 
+		<div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+		<input type="text" class="fps-ipt fps-blue" id="{v[name]}" name="key[{v[name]}]" placeholder="<lang>输入搜索：</lang>{v[title]}" value="{v[value]}">
+		</div>
+		<!-- END -->
+		<div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+			<input type="text" class="form-control has-feedback-left" id="stime" placeholder="起始时间" value="{t_where['data']['date_start']}" name="key[date_start]" aria-describedby="inputSuccess2Status" readonly>
+			<span class="fa fa-clock-o form-control-feedback left" aria-hidden="true"></span>	
+		
+		</div>
+		
+		<div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+			<input type="text" class="form-control has-feedback-left" id="etime" value="{t_where['data']['date_end']}" placeholder="结束时间" name="key[date_end]" aria-describedby="inputSuccess2Status" readonly>
+			<span class="fa fa-clock-o form-control-feedback left" aria-hidden="true"></span>	
+		
+		</div>
+
+
+	<div class="col-md-9 col-sm-9 col-xs-12 ">
+		<button type="submit" class="btn btn-success"><lang>搜索</lang></button>
+		<!-- IF(count((array)$_search_val)>0) -->
+			<button type="button" class="btn btn-primary" onclick="location='{page_url}&s=clear';"><lang>清空搜索</lang></button>
+		<!-- END -->
+	</div>
+</form>
+<script>
+$(function(){
+$('#stime').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_1",
+        //起始时间为空
+		autoUpdateInput: false,
+		//起始时间为空
+		startDate:"{run:echo $t_where['data']['date_start']?$t_where['data']['date_start']:dates(time(),'Y-m-d')}",
+		"locale": {
+				format: 'YYYY-MM-DD',
+				daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+				monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+				
+			}
+      }, function(start, end, label) {
+       //起始时间为空
+			beginTimeTake = start;
+		
+			if(!this.startDate){
+				this.element.val('');
+				
+			}else{
+				this.element.val(this.startDate.format(this.locale.format));
+			}
+			//起始时间为空
+        //console.log(start.toISOString(), end.toISOString(), label);
+});
+$('#etime').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_1",
+        //起始时间为空
+		autoUpdateInput: false,
+		//起始时间为空
+		startDate:"{run:echo $t_where['data']['date_end']?$t_where['data']['date_end']:dates(time(),'Y-m-d')}",
+		"locale": {
+				format: 'YYYY-MM-DD',
+				daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+				monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+				
+			}
+      }, function(start, end, label) {
+        //起始时间为空
+			beginTimeTake = start;
+		
+			if(!this.startDate){
+				this.element.val('');
+				
+			}else{
+				this.element.val(this.startDate.format(this.locale.format));
+			}
+			//起始时间为空
+});
+
+
+})
+</script>
+</div>

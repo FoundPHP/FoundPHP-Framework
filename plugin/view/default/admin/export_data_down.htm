@@ -1,0 +1,19 @@
+﻿
+
+<div class="x_title">
+  <h2>{title}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+             	<div class="x_panel aa" style="max-height:365px;overflow-y:auto;overflow-x:hidden">
+               	<h2><!-- IF($action_name) --><b>{action_name}</b> <!-- END -->导出数据完成。</h2>
+                  
+				<button type="submit" class="btn btn-success" onclick="location='?{run:echo $m!=''?'m='.$m.'&':''}a={a}&t=getfile&n={n}'"><lang>下载</lang></button>
+				<button type="button" class="btn btn-primary" onclick="location='?{run:echo $m!=''?'m='.$m.'&':''}a={n}'">返回</button>
+             	</div>
+			</div>
+		</div>
+
+

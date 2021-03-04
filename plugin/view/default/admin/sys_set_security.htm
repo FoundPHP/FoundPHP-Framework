@@ -1,0 +1,243 @@
+﻿
+
+<div class="col-md-6 col-xs-12">
+
+
+
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>前端 GET 数据入口</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="2" type="hidden">
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>入口开放</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="GETSET" value="1" class="js-switch" {run:echo $GETSET?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>开启后将对GET数据入口限制</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>接收入口</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+	  		<input type="text" name="getlist" class="form-control" {run:echo !$GETSET?'disabled':''} value="{run:echo implode(',',$config['get'])}">
+	  		<small>&nbsp;&nbsp;<lang>逗号分隔接收数据入口，没有入口则不接收</lang></small>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>系统说明</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th><lang>入口</lang></th>
+				<th><lang>介绍</lang></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>m</td>
+				<td><b>model 操作模块</b></td>
+			</tr>
+			<tr>
+				<td>a</td>
+				<td><b>action 动作行为</b></td>
+			</tr>
+			<tr>
+				<td>t</td>
+				<td><b>to 跳转</b></td>
+			</tr>
+			<tr>
+				<td>o</td>
+				<td><b>operation 操作</b></td>
+			</tr>
+			<tr>
+				<td>g</td>
+				<td><b>go 成功失败状态</b></td>
+			</tr>
+			<tr>
+				<td>s</td>
+				<td><b>search 搜索</b></td>
+			</tr>
+			<tr>
+				<td>k</td>
+				<td><b>keys 搜索键值</b></td>
+			</tr>
+			<tr>
+				<td>p</td>
+				<td><b>page 分页id</b></td>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td><b>id 产品序列 </b></td>
+			</tr>
+			<tr>
+				<td>cid</td>
+				<td><b>cid 分类序列 </b></td>
+			</tr>
+			<tr>
+				<td>token</td>
+				<td><b>token 接收实现远程登陆</b></td>
+			</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+
+  </form>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>安防设置</lang> <small><lang>用于防止攻击功能</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>操作日志</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="SLOG" value="1" class="js-switch" {run:echo $SLOG?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>对所有操作记录</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>调试日志</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="LOG" value="1" class="js-switch" {run:echo $LOG?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>记录前后台每个页面地址以及数据库语句，访问量超大的时候会影响效率。</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>开发模式</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="DEVMODE" value="1" class="js-switch" {run:echo $DEVMODE?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>开启后可以启动自动建立页面，关闭增加安全性</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>调试平台</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="DEBUG" value="1" class="js-switch" {run:echo $DEBUG?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>在页面的下方显示调用模板与数据库语句信息</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>随机目录</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="PATH_RAND" class="form-control " value="{run:echo $PATH_RAND}">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>超时时间（秒）</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+			<input type="number" name="TIMEOUT" value="{run:echo $TIMEOUT}" class="form-control" />
+	</div>
+</div>
+
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>跨域设置</lang> <small><lang>允许别的域名访问本站</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="3" type="hidden">
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>跨域开启</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="allow_on" value="1" class="js-switch" {run:echo $config['set']['allow_on']?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>允许ajax或其他应用对网站访问</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>允许域名</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<textarea rows="10" name="allow_list" cols="59" class="form-control">{run:echo implode("\r\n",$config['set']['allow_list'])}</textarea><br>
+		<small>&nbsp;&nbsp;<lang>每一行代表一个可以允许访问的域名，例如：www.FoundPHP.com,如果想全部接受则输入*</lang></small>
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>授权模块</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="allow_model" class="form-control " value="{run:echo implode(",",$config['set']['allow_model'])}">
+		<small>&nbsp;&nbsp;<lang>针对授权模块开发域名授权，例如：api，多个以逗号分隔</lang></small>
+	</div>
+</div>
+
+
+
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+

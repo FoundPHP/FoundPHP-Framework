@@ -1,0 +1,151 @@
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>基础功能</lang> <small><lang>设置网站性能与基本功能</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>网站名称</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="site_name" value="{config['set']['site_name']}" class="form-control" />
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>网站作者</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="site_author" value="{config['set']['site_author']}" class="form-control" />
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>网站关键词</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="site_key" value="{config['set']['site_key']}" class="form-control" />
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>网站介绍</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="site_desc" value="{config['set']['site_desc']}" class="form-control" />
+	</div>
+</div>
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>网站地址</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="site_url" value="{config['set']['site_url']}" class="form-control" />
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>握手密钥</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="link_key" value="{config['link_key']}" class="form-control" />
+		<small><lang>DES密钥8位可与java兼容</lang></small>
+	</div>
+</div>
+
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>GZIP页面压缩</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="GZHANDLER" value="1" class="js-switch" {run:echo $GZHANDLER?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>访问提速会占用CPU</lang></small>
+  </div>
+</div>
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>时间设置</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>时间格式</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="TIME_FORMAT" class="form-control " value="{run:echo $TIME_FORMAT}">
+		<small>&nbsp;&nbsp;<lang>当前时间格式：</lang>{run:echo date($TIME_FORMAT,time());}</small>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>时间区域</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="TIMEZONE" class="form-control " value="{run:echo $TIMEZONE}">
+		<small>&nbsp;&nbsp;<lang>时间区域</lang>
+	</div>
+</div>
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+	
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>上传设置</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>文件大小</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="file_size" class="form-control " value="{config['file_size']}">
+		<small>&nbsp;&nbsp;<lang>上传文件大小单位KB</lang>
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>上传格式</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="file_ext" value="{config['file_ext']}" class="form-control" />
+		<small><lang>分号相隔，例如：*.jpg;*.zip;*.rar</lang></small>
+	</div>
+</div>
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button></div>
+	</div>
+	
+</div>
+</div>
+</div>
+
+
+
+
+</form>

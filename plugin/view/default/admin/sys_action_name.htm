@@ -1,0 +1,39 @@
+﻿<div class="x_title">
+  <h2>{title} {run:echo add();}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+			<form method="post" class="form-horizontal" action="{form_adds}&todo=del">
+				
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th><lang>功能操作名</lang></th>
+				<th><lang>功能名称</lang></th>
+				<th class="table_th_right col-sm-2"><lang>操作</lang></th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+				<tr>
+					<th scope="row"><span class="lbl">&nbsp;{dls[$t_index]}</span></th>
+					<td>{dls['cate_name']}</td>
+					<td><b>{dls['cate_desc']}</b></td>
+					<td>{run:echo taction($dls[$t_index]); }</td>
+				</tr>
+			<!-- END -->
+			<!-- IF($_i==0) -->
+			<tr height="35">
+				<td colspan="12"><h4><lang>抱歉，没有符合的数据。</lang></h4></th>
+			</tr>
+			<!-- END -->
+			</tbody>
+		</table>
+		{pages}
+			</form>
+			</div>
+		</div>
+

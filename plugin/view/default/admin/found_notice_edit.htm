@@ -1,0 +1,50 @@
+
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+
+<div class="col-md-12 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>{title} <small></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>类型</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<select  class="form-control" name="genre" required>
+						<!--IF($found_notice)-->
+							<!--$found_notice as $k=>$v-->
+							<option value="{v['cate_id']}" {run:echo $v[cate_id]==$genre?'selected':''}>{v['cate_name']}</option>
+							<!--END-->
+						<!--END-->
+					</select>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>标题</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="titles" id="titles" value="{titles}" required="required" >
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>内容</lang></label>
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					{run:echo edit(array('id'=>'contents','data'=>$contents,'height'=>500));}
+				</div>
+		</div>
+	
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button>
+	<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);return false;"><lang>返回</lang></button>
+	</div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+

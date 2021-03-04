@@ -1,0 +1,35 @@
+			<ul class="nav nav-tabs">
+				<li id="tab-def" class="active">
+					<a href="?a={a}"><lang>网站风格</lang></a>
+				</li>
+				<li id="tab-go"><a href="?a={a}&t=go" ><lang>跳转设置</lang></a></li>
+				<li id="tab-lazy"><a href="?a={a}&t=lazy" ><lang>照片延载</lang></a></li>
+				<!-- DEL -->
+				<li class="dropdown">
+					<a href="#" id="myTabDrop1" class="dropdown-toggle" 
+					   data-toggle="dropdown">Java 
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+						<li><a href="#jmeter" tabindex="-1" data-toggle="tab">jmeter</a></li>
+						<li><a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a></li>
+					</ul>
+				</li>
+				<!-- END -->
+			</ul>
+
+                 	<div class="row" style="margin-top:10px;"><!-- IF($t=='') -->{inc:sys_style_def}
+			<!-- ELSEIF($t=='go') -->{inc:sys_style_go}
+			<!-- ELSEIF($t=='lazy') -->{inc:sys_style_lazy}
+			<!-- END -->
+
+                 	</div>
+            
+
+
+<!-- IF($t) -->
+	<script>
+	$(".nav-tabs .active").removeClass("active");
+	$("#tab-{t}").addClass("active");
+	</script>
+<!-- END -->

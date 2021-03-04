@@ -1,0 +1,71 @@
+﻿
+
+<div class="x_title">
+  <h2>{title}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+             	<div class="x_panel aa" style="max-height:365px;overflow-y:auto;overflow-x:hidden">
+                  
+               	<div class="row">
+                     	<div class="progress_title">
+                       	<span class="left" style="padding:11px;margin-bottom:10px;"><lang>更新数据</lang>：<span id="nums">{delang_num}</span>条</span>
+                       	<span class="right"></span>
+                       	<div class="clearfix"></div>
+                     	</div>
+
+                     	<div class="col-xs-10">
+                       	<div class="progress">
+                         	<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{progress}" aria-valuenow="88" style="width: {progress}%;"></div>
+                       	</div>
+                     	</div>
+                     	<div class="col-xs-2 more_info">
+                          完成 <span id="progress">{progress}%</span>
+                     	</div>
+                   	</div>
+                      
+					数据更新期间不要操作任何功能。
+             	</div>
+			</div>
+		</div>
+
+<script>
+
+function progress(page){
+	$.ajax({
+		url:'?m={m}&a={a}&id={id}&t={t}&o=1&p='+page+'&token={run:echo session_id()}',
+		dataType:"html",
+		success:function(data){
+			var data = eval('('+data+')')
+			console.log(data);
+			if (data.code==1){
+				$('.progress-bar').attr('data-transitiongoal',data.progress);
+				$('.progress-bar').css('width',data.progress+'%');
+				$('#nums').html(data.nums);
+				$('#progress').html(data.progress+'%');
+				$(document).attr("title",'数据导出 '+data.progress+'%');
+				if (data.next>data.total){
+					layer.msg('更新完成', {
+						time: 200000, //20s后自动关闭
+						btn: ['立即翻译', '稍后翻译'],
+						yes:function(res){
+							location = '?a={a}&t=translate&id={id}';
+						}
+						
+					});
+					//location = '?{run:echo $m!=''?'m='.$m.'&':''}a={a}&t=down&n={n}&o={o}&g={g}';
+				}else{
+					setTimeout(function(){
+						progress(data.next);
+					},1000);
+				}
+			}
+		}
+		
+	});
+}
+
+progress(1);
+</script>

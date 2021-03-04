@@ -1,0 +1,23 @@
+			<ul class="nav nav-tabs">
+				<li id="tab-def" class="active"><a href="?a={a}"><lang>基本设置</lang></a></li>
+				<li id="tab-view"><a href="?a={a}&t=view"><lang>视图设置</lang></a></li>
+				<li id="tab-security"><a href="?a={a}&t=security" ><lang>安全设置</lang></a></li>
+				<li id="tab-cache"><a href="?a={a}&t=cache" ><lang>缓存清理</lang></a></li>
+				<li id="tab-cookie"><a href="?a={a}&t=cookie" ><lang>Cookie / Session</lang></a></li>
+			</ul>
+
+                 	<div class="row" style="margin-top:10px;"><!-- IF($t=='def') -->{inc:sys_set_def}
+			<!-- ELSEIF($t=='view') -->{inc:sys_set_view}
+			<!-- ELSEIF($t=='security') -->{inc:sys_set_security}
+			<!-- ELSEIF($t=='cache') -->{inc:sys_set_cache}
+			<!-- ELSEIF($t=='cookie') -->{inc:sys_set_cookie}
+			<!-- END -->
+                 	</div>
+
+
+<!-- IF($t) -->
+	<script>
+	$(".nav-tabs .active").removeClass("active");
+	$("#tab-{t}").addClass("active");
+	</script>
+<!-- END -->

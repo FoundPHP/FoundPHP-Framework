@@ -1,0 +1,158 @@
+<!-- multi-select -->
+<link href="{style_dir}css/multi-select.css" rel="stylesheet">
+<script src="{style_dir}js/jquery.multi-select.js"></script>
+<!-- icon select -->
+<script src="{style_dir}js/fonticonpicker/jquery.fonticonpicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{style_dir}js/fonticonpicker/jquery.fonticonpicker.darkgrey.min.css" />
+
+
+<div class="col-md-12 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>{title} <small></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+		<div class="form-group">
+				<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>菜单图标</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" name="icon" id="icon" value="{icon}">
+			</div>
+		</div>
+		<div class="form-group">
+				<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>上级菜单</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<select size="1" name="fid" class="form-control">
+					<option value="0">无上级菜单</option>
+						{tree}
+					</select>
+					<small><lang>添加的菜单为选择菜单的子菜单，最多4级。</lang></small>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>模块标识</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="language" id="language" value="{language}" placeholder="<lang>例如：user_list</lang>" required="required">
+					<small><lang>系统菜单区分标识，命名可以使用：字符、数字与下划线。</lang></small>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>模块名称</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="cate_name" id="cate_name" value="{cate_name}" placeholder="<lang>例如：用户列表</lang>" required="required">
+					<small><lang>管理菜单名称</lang></small>
+				</div>
+		</div>
+		<!-- DEL -->
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>分类介绍</lang></label>
+				<div class="col-md-9 col-sm-9 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="cate_desc" id="cate_desc" value="{cate_desc}">
+					<small><lang>分类介绍用于方便了解分类的内容</lang></small>
+				</div>
+		</div>
+		<!-- END -->
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>跳转链接</lang></label>
+				<div class="col-md-9 col-sm-9 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="cate_url" id="cate_url" value="{cate_url}">
+					<small><lang>填写完整url链接后，将载入连接制定内容</lang></small>
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>加密外链</lang></label>
+					<div class="col-md-9 col-sm-9 col-xs-12">
+					<label class="foundphp-style">
+						<input type="checkbox" name="linkto" value="1" {run:echo ((int)$linkto==1)?'checked':''} class="fps-ck fps-mini fps-blue">
+						<span class="fps-show"></span>
+						<small><lang>加密外链开启可以与其他系统匹配功能</lang></small>
+					</label>
+					</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>显示/隐藏</lang></label>
+					<div class="col-md-9 col-sm-9 col-xs-12">
+					<label class="foundphp-style">
+						<input type="checkbox" class="fps-open" name="shows" value="1" {run:echo ((int)$shows==1)?'checked':''} >
+						<span class="fps-show"></span>
+						<small><lang>管理分类是否在网站前台显示</lang></small>
+					</label>
+								
+					</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>文件类型ID</lang></label>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="number" class="form-control " name="lockout" MAXLENGTH="4" id="lockout" value="{run:echo (int)$lockout}">
+				<small><lang>方便快速排序，输入分类排序id，跳转链接输入：<br>?a=files&o=标识名</lang></small>
+					</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>排序id</lang></label>
+			<div class="col-md-2 col-sm-2 col-xs-12">
+				<input type="number" class="form-control " name="orders" MAXLENGTH="4" id="orders" value="{run:echo (int)$orders}">
+				<small><lang>方便快速排序，输入分类排序id即可</lang></small>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>权限功能</lang></label>
+			<div class="col-md-8 col-sm-8 col-xs-12">
+				<select name="cate_desc[]" id="pre-selected-options" multiple >
+					<!-- while:$dls = $db->fetch_array($ope_query) -->
+					<option {run:echo is_array($ope_select)&&in_array($dls['cate_name'],$ope_select)?" selected='selected'":""} value="{dls['cate_name']}">{dls['cate_desc']}</option>
+					<!-- END -->
+				</select>
+
+				
+				<small><lang>选中的权限后该功能则具有分配权限</lang></small>
+			</div>
+		</div>
+
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button>
+	<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);return false;">返回</button>
+	</div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+<script>
+$(function(){
+	//多选关联
+	$('#pre-selected-options').multiSelect();
+})
+
+//选择icon
+$(function(){
+	$('#icon').fontIconPicker({
+		source: FoundPHP_iconDatas,
+		theme: 'fip-darkgrey',
+		emptyIcon: true,
+		hasSearch: true
+	});
+
+
+});
+
+</script>
+

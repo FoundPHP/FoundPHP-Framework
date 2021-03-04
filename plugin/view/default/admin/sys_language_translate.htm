@@ -1,0 +1,49 @@
+﻿<div class="x_title">
+  <h2>{title} {run:echo add();}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+			<form method="post" class="form-horizontal" action="{form_adds}&todo=del">
+				
+		<table class="table table-bordered table-striped">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th><lang>语种</lang></th>
+				<th><lang>数量</lang></th>
+				<th><lang>状态</lang></th>
+				<th class="table_th_right col-sm-2"><lang>操作</lang></th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+				<tr>
+					<th scope="row"><span class="lbl">&nbsp;{dls[$t_index]}</span></th>
+					<td>{dls['cate_name']}</td>
+					<td><b>{dls['numbers']}</b></td>
+					<td>
+						<!-- IF($dls['numbers'] < $delang_num) -->
+						<span class="fps-circle fps-circle-3d fps-red fps-flash fps-flash-2"></span>
+						<lang>未完成更新</lang>
+						<!-- ELSE -->
+						<span class="fps-circle fps-circle-3d fps-green fps-flash fps-flash-2"></span>
+						<lang>已更新</lang>
+						<!-- END -->
+					</td>
+					<td><!-- IF($_i>1) -->{run:echo taction($dls[$t_index],$dls[$t_index]==$get_lang['cate_id']?array('translate'):''); }<!-- END --></td>
+				</tr>
+			<!-- END -->
+			<!-- IF($_i==0) -->
+			<tr height="35">
+				<td colspan="12"><h4><lang>抱歉，没有符合的数据。</lang></h4></th>
+			</tr>
+			<!-- END -->
+			</tbody>
+		</table>
+		{pages}
+			</form>
+			</div>
+		</div>
+

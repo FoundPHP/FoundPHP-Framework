@@ -1,0 +1,76 @@
+
+
+<!-- IF((count((array)$more)-count((array)$die_power))<=3) -->
+
+<div class="hidden-sm hidden-xs btn-group">
+	<!-- IF(!empty($edit_url) && !in_array('edit',(array)$die_power)) -->
+	
+	<button class="btn btn-xs btn-dark" type="button" onclick="location='{edit_url}'" style="margin-right:5px;margin-bottom:5px;">
+		<i class="fa fa-pencil" onclick="location='{edit_url}'"></i>&nbsp;<lang>编辑</lang>
+	</button>
+	<!-- END -->
+	
+	<!-- IF(!empty($del_url) && !in_array('del',(array)$die_power)) -->
+	
+	<button class="btn btn-xs btn-danger" type="button" style="margin-right:5px;margin-bottom:5px;" onclick="javascript:if(confirm('<lang>您确定要删除吗?</lang>'))location='{del_url}';return false;">
+		<i class="fa fa-trash-o"></i>&nbsp;<lang>删除</lang>
+	</button>
+	<!-- END -->
+	
+	<!-- IF(!empty($more)) -->
+	<!-- $more AS $K=>$V -->
+		<!-- IF($GLOBALS['_sys_pn'][$K] && !in_array($K,(array)$die_power)) -->
+		<button class="btn btn-xs btn-info" type="button" style="margin-right:5px;margin-bottom:5px;" onclick="location='{more_link}&t={K}'">
+			{GLOBALS['_sys_pn'][$K]}
+		</button>
+		<!-- END -->
+	<!-- END -->
+	<!-- END -->
+</div>
+<div class="hidden-md hidden-lg">
+<div class="btn-group" >
+<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm" type="button" aria-expanded="false"><i class="fa fa-cog"></i>&nbsp;&nbsp;<span class="caret"></span></button>
+<ul role="menu" class="dropdown-menu">
+	<!-- IF(!empty($edit_url) && !in_array('edit',(array)$die_power)) -->
+	<li><a href="{edit_url}"><i class="fa fa-pencil-square-o bigger-120"></i></li> <lang>编辑</lang></a>
+	<!-- END -->
+	
+	<!-- IF(!empty($del_url) && !in_array('del',(array)$die_power)) -->
+	<li><a onclick="javascript:if(confirm('<lang>您确定要删除吗?</lang>'))location='{del_url}';return false;" href="#"><i class="fa fa-trash-o bigger-120"></i> <lang>删除</lang></a></li>
+	<!-- END -->
+
+		<!-- IF(!empty($more)) -->
+		<li class="divider"></li>
+		<!-- $more AS $K=>$V -->
+			<!-- IF($GLOBALS['_sys_pn'][$K]  && !in_array($K,(array)$die_power)) -->
+			<li><a href="{more_link}&t={K}"><i class="fa fa-circle-o bigger-120"></i> {GLOBALS['_sys_pn'][$K]}</a></li>
+			<!-- END -->
+		<!-- END -->
+		<!-- END -->
+</ul>
+</div>
+</div>
+<!-- ELSE -->
+
+<div class="btn-group" >
+<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm" type="button" aria-expanded="false"><i class="fa fa-cog"></i>&nbsp;&nbsp;<span class="caret"></span></button>
+<ul role="menu" class="dropdown-menu">
+	<!-- IF(!empty($edit_url) && !in_array('edit',(array)$die_power)) -->
+	<li><a href="{edit_url}"><i class="fa fa-pencil-square-o bigger-120"></i> <lang>编辑</lang></a></li>
+	<!-- END -->
+	
+	<!-- IF(!empty($del_url) && !in_array('del',(array)$die_power)) -->
+	<li><a onclick="javascript:if(confirm('<lang>您确定要删除吗?</lang>'))location='{del_url}';return false;" href="#"><i class="fa fa-trash-o bigger-120"></i> <lang>删除</lang></a></li>
+	<!-- END -->
+
+		<!-- IF(count((array)$more)>0) -->
+		<li class="divider"></li>
+		<!-- $more AS $K=>$V -->
+			<!-- IF($GLOBALS['_sys_pn'][$K]  && !in_array($K,(array)$die_power)) -->
+			<li><a href="{more_link}&t={K}"><i class="fa fa-circle-o bigger-120"></i> {GLOBALS['_sys_pn'][$K]}</a></li>
+			<!-- END -->
+		<!-- END -->
+		<!-- END -->
+</ul>
+</div>
+<!-- END -->

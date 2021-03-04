@@ -1,0 +1,39 @@
+
+{run:echo search();}
+<div class="x_title">
+  <h2>{title} {run:echo add();}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+			<form method="post" class="form-horizontal" action="{form_adds}&todo=del">
+				
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="col-sm-1">ID  <!-- order:cate_id--> </th>
+							<th><lang>公告标题</lang></th>
+							<th><lang>公告类型</lang></th>
+							<th class="table_th_right col-sm-2"><lang>操作</lang></th>
+						</tr>
+					</thead>
+					<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+					<tr>
+						<th scope="row"><span class="lbl">&nbsp;{run:echo $dls[$t_index]}</span></th>
+						<td>{dls['titles']}</td>
+						<td>{run:echo $found_name[$dls['genre']]}</td>
+						<td>{run:echo taction($dls[$t_index],($aus[id]==$dls[id]?array('del'):'')); }</td>
+					</tr>
+					<!-- END -->
+					<!-- IF($_i==0) -->
+					<tr>
+						<th colspan="11"><lang>抱歉，没有数据</lang></th>
+					</tr>
+					<!-- END -->
+				</table>
+				{pages}
+			</form>
+			</div>
+		</div>
+

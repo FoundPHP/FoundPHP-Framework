@@ -1,0 +1,113 @@
+﻿<script>
+//选择样式
+function click_style(id){
+$('#style'+id).prop("checked","checked").siblings().removeAttr("checked");
+$('#setstyle').val(id);
+sel_style(id);
+return false;
+}
+function sel_style(id){
+	for (var i=1;i<=7;i++) {
+		if (i==id){
+		$('#img'+id).css("border","1px solid red");
+		}else{
+		$('#img'+i).css("border","1px solid #ddd");
+		}
+	}
+}
+//预览
+
+$(document).ready(function(){
+    $("#preview").click(function(){
+	noscript = ($('#noscript').is(':checked')?1:0);
+	fadein =  ($('#fadein').is(':checked')?1:0);
+	threshold = $('#threshold').val();
+	limit = $('#limit').val();
+	$("#preview_frame").attr("src","?a={a}&t=lazy_view&fadein="+fadein+"&threshold="+threshold+"&limit="+limit);
+    });
+});
+
+</script>
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>照片延时载入</lang> <small><lang>集成 Lazy Load 减少服务器打开照片时的负载</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>开启</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="load" value="1" class="js-switch" {run:echo $load?'checked':''} />
+	  </label>
+  </div>
+</div>
+<!-- DEL -->
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>兼容模式</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="noscript" id="noscript" value="1" class="js-switch" {run:echo $noscript?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>兼容在没有 Lazy Load 仍然能正常显示照片</lang></small>
+  </div>
+
+</div>
+<!-- END -->
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>淡入效果</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="fadein" id="fadein" value="1" class="js-switch" {run:echo $fadein?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang>照片显示增加淡入效果</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>预载距离(像素)</lang></label>
+<div class="col-md-9 col-sm-9 col-xs-12">
+<input name="threshold" id="threshold" type="range" min="100" max="500" value="{threshold}">
+</div>
+</div>
+
+<div class="form-group">
+<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>预载区域</lang></label>
+<div class="col-md-9 col-sm-9 col-xs-12">
+<input name="limit" id="limit" type="range" min="1" max="20" value="{limit}">
+<small><lang>多区域需延时载入，输入区域数量，过多影响页面速度。</lang></small>
+</div>
+</div>
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button> <button type="button" class="btn btn-primary" id="preview"><lang>预览</lang></button></div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>预览效果</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content" style="height:500px;">
+{run:echo msg_go()}
+<iframe name="preview_frame" id="preview_frame" width="100%" height="100%" src="?a={a}&t=lazy_view&fadein={run:echo $fadein?'1':'0'}&threshold={threshold}&limit={limit}" border="0" frameborder="0"></iframe>
+ 
+</div>
+</div>
+</div>
+
+
+<script>sel_style({style});</script>

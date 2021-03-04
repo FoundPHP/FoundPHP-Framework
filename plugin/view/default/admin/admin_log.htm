@@ -1,0 +1,58 @@
+﻿{run:echo search('admin_log_search');}
+
+<!-- 日期样式 -->
+<script src='{style_dir}js/moment.min.js'></script>
+<link href="{style_dir}daterangepicker/daterangepicker.css" rel="stylesheet">
+<script src='{style_dir}daterangepicker/daterangepicker.js'></script>
+<div class="x_title">
+  <h2>{title} {run:echo add();}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+			
+			<form method="post" class="form-horizontal" action="{form_adds}&todo=del">
+				
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="col-sm-1">ID <!-- order:id --></th>
+							<th><lang>操作系统</lang> </th>
+							<th><lang>操作人</lang></th>
+							<th><lang>页面标题</lang> </th>
+							<th><lang>动作</lang> </th>
+							<th><lang>操作内容</lang></th>
+							<th><lang>操作时间</lang></th>
+							<th><lang>ip</lang></th>
+							<th><lang>浏览器</lang></th>
+							
+							<th class="table_th_right"><lang>操作</lang></th>
+						</tr>
+					</thead>
+					<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+					<tr>
+						<th scope="row"><span class="lbl">&nbsp;{dls[$t_index]}</span></th>
+						<td>{run:echo $dls['m']=='admin'?'后台':'前台'}</td>
+						<td>{dls['username']}</td>
+						<td>{dls['titles']}</td>
+						<td>{dls['todo']}</td>
+						<td>{dls['logs']}</td>
+						<td>{run:echo date('Y-m-d H:i:s',$dls['dates'])}</td>
+						<td>{dls['ip']}</td>
+						<td>{dls['browse']}</td>
+						<td>{run:echo taction($dls[$t_index],($aus[id]===1?array('del'):'')); }</td>
+					</tr>
+					<!-- END -->
+					<!-- IF($_i==0) -->
+					<tr>
+						<th colspan="11"><lang>抱歉，没有数据</lang></th>
+					</tr>
+					<!-- END -->
+				</table>
+				
+				{pages}
+			</form>
+			</div>
+		</div>
+

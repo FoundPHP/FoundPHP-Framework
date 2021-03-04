@@ -1,0 +1,167 @@
+<!-- multi-selec -->
+<link href="{style_dir}css/multi-select.css" rel="stylesheet">
+<script src="{style_dir}js/jquery.multi-select.js"></script>
+<!-- multi-selec -->
+
+
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+
+<div class="col-md-12 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>{title} <small></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>管理权限组</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<select name="gid" class="form-control selectpicker" required multiple data-live-search="true" > 
+						<!-- while:$dls = $db->fetch_array( $query ) -->
+						<option value="{dls['agid']}" {run:echo $dls['agid']==$gid?'selected':''}>{dls['names']}</option>
+						<!-- END -->
+					</select>
+					<input name="gid_old" value="{gid}" type="hidden">
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>语言种类</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<select name="lang" class="form-control selectpicker" required multiple data-live-search="true" > 
+						<!-- $set_lang AS $k=>$v -->
+						<!-- IF(in_array($k,$lang_ary)) -->
+						<option value="{k}" {run:echo $lang==$k?'selected':''}>{v}</option>
+						<!-- END -->
+						<!-- END -->
+					</select>
+					<input name="gid_old" value="{gid}" type="hidden">
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>用户名</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="username" id="username" value="{username}" placeholder="<lang>例如：admin</lang>" {run:echo $t=='edit'?'disabled="disabled"':''}>
+					<small><lang>系统登录的账号，大小写字母数字与下划线。</lang></small>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>密码</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="password" class="fps-ipt fps-blue" name="password" id="password" value="" placeholder="<lang>例如：Test123</lang>" {run:echo $t=='add'?'required="required"':''}>
+					<small><lang>最少输入6位密码，大小写字母数字。</lang></small>
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>用户姓名</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="nickname" id="nickname" value="{nickname}" placeholder="<lang>例如：大川</lang>">
+					<small><lang>用户昵称或真实姓名。</lang></small>
+				</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>邮箱地址</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="email" class="fps-ipt fps-blue" name="email" id="email" value="{email}" placeholder="<lang>例如：master@l-fb.com</lang>">
+					<small><lang>邮箱地址。</lang></small>
+				</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>手机/电话</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="phone" id="phone" value="{phone}">
+					<small><lang>可以联系到的手机或座机号码。</lang></small>
+				</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>职位/头衔</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="position" id="position" value="{position}">
+					<small><lang>人员的职位或职能权限。</lang></small>
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>性别</lang></label>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+						<label class="foundphp-style">
+							<input type="radio"{gender_ck0} value="0" name="gender" class="fps-rd fps-mini fps-gray">
+							<span class="fps-show"></span>
+							<span><lang>未设置</lang></span>
+						</label>
+						<label class="foundphp-style">
+							<input type="radio"{gender_ck1} value="1" name="gender" class="fps-rd fps-mini fps-blue">
+							<span class="fps-show"></span>
+							<span><lang>男性</lang></span>
+						</label>
+						<label class="foundphp-style">
+							<input type="radio"{gender_ck2} value="2" name="gender" class="fps-rd fps-mini fps-red">
+							<span class="fps-show"></span>
+							<span><lang>女性</lang></span>
+						</label>
+				</div>
+		</div>
+		<!-- IF(isset($operate_ary)) -->
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>运营中心</lang></label>
+			<div class="col-md-3 col-sm-3 col-xs-12">
+				<select name="operate_ary[]" id="pre-selected-options" multiple >
+					<!-- $operate_ary AS $k=>$v -->
+					<option {run:echo in_array($v['cate_id'],explode(',',$operate))?"selected":""} value="{v['cate_id']}">{v['cate_name']}</option>
+					<!-- END  -->
+				</select>
+
+				
+				<small><lang>运营中心</lang></small>
+			</div>
+		</div>
+		<!-- END -->
+		
+		
+		<!-- IF($id!=$aus['id'] && $id>0) -->
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>激活可用</lang></label>
+					<div class="col-md-9 col-sm-9 col-xs-12">
+					<label class="foundphp-style">
+						<input type="checkbox" name="states" value="1" class="fps-ck fps-mini" {run:echo ((int)$states==1)?'checked':''} />
+						<span class="fps-show"></span>
+						<span><lang>选中表示可以登录</lang></span>
+					</label>
+			</div>
+		</div>
+		<!-- ELSE -->
+		<input name="states" type="hidden" value=1>
+		<!-- END -->
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button>
+	<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);return false;">返回</button>
+	</div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+<!-- multi-selec -->
+<script>
+$(function(){
+	$('#pre-selected-options').multiSelect();
+})
+</script>
+<!-- multi-selec -->
+
+<script type="text/javascript"> 
+$('.selectpicker').tinyselect();
+</script>
+

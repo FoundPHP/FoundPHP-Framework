@@ -1,0 +1,176 @@
+<!-- multi-selec -->
+<link href="{style_dir}css/multi-select.css" rel="stylesheet">
+<script src="{style_dir}js/jquery.multi-select.js"></script>
+<!-- multi-selec -->
+
+<div class="col-md-12 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+	<h2>{title} <small></small></h2>
+	<div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>管理组名</lang></label>
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="names" id="names" value="{names}" placeholder="<lang>例如：数据管理员</lang>" required="required" maxlength="50">
+					<small><lang>系统管理组的名称。</lang></small>
+				</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>管理组说明</lang></label>
+				<div class="col-md-8 col-sm-8 col-xs-12">
+					<input type="text" class="fps-ipt fps-blue" name="intro" id="intro" value="{intro}" maxlength="50">
+					<small><lang>描述系统管理组的相关用途。</lang></small>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>组负责人</lang></label>
+			<div class="col-md-8 col-sm-8 col-xs-12">
+				<!-- IF($master_ary) -->
+				<select name="master[]" id="pre-selected-options" multiple >
+					<!-- $master_ary AS $k=>$v -->
+					<option value="{v['id']}">{v['username']}</option>
+					<!-- END  -->
+				</select>
+				<!-- ELSE -->
+				<b style="color:red"><lang>当前管理组下还没有管理人员，请添加管理人员才可分配</lang></b>
+				<!-- END -->
+				
+				<small><lang>左侧为待选人员，右侧为选中的负责人，负责人最多{master_num}人</lang></small>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>管理权限</lang></label>
+				<div class="col-md-10 col-sm-10 col-xs-12">
+					
+					
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><lang>名称</lang></th>
+							<th><lang>权限</lang></th>
+						</tr>
+					</thead>
+					{data_list}
+				</table>
+					
+				</div>
+		</div>
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button>
+	<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);return false;">返回</button>
+	</div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+<script type='text/javascript'>
+
+//功能选择
+function gb_sel(id,fid){
+	$('.open'+id).prop("checked",true);
+	$('.m'+fid).prop("checked",true);
+}
+
+//访问
+function gb_open(id,fid){
+	check = $('.open'+id+':checked').length;
+	$('.m'+fid).prop("checked",true);
+	if (check==0){
+		$('.c'+id).prop("checked",false);
+	}
+	fclear(fid);
+}
+
+function fclear(fid){
+	var clear	= 0;
+	if (fid>0){
+		$(".f"+fid+":checkbox").each(function (){
+				sel_check = $(this).is(':checked');
+				console.log(sel_check);
+				if (sel_check==true){
+					clear	= 1;
+				}
+		});	
+		if (clear==0){
+			$('.m'+fid).prop("checked",false);
+		}
+	}
+}
+
+//子集全选
+function gb_all(id,fid){
+	//整行取消选择
+	var sel_num	= 0;
+	var ck_num	= 1;
+	open_check	= $(".open"+id).is(':checked');
+	if (open_check==true){
+		sel_num	= 1;
+	}
+	$(".c"+id+":checkbox").each(function (){ 
+		ck_num++;
+		sel_check = $(this).is(':checked');
+		if (sel_check==true){
+			sel_num++;
+		}
+	});
+	if (sel_num>0 || sel_num==0){
+		$('.m'+fid).prop("checked",true);
+		$('.m'+id).prop("checked",true);
+		$('.c'+id).prop("checked",true);
+		$('.f'+id).prop("checked",true);
+	}
+	if (sel_num==ck_num){
+		$('.c'+id).prop("checked",false);
+		$('.open'+id).prop("checked",false);
+	}
+	fclear(fid);
+}
+
+//组别全选
+function gb_selall(id,fid){
+	//整行取消选择
+	var sel_num	= 0;
+	var ck_num	= 1;
+	open_check	= $(".m"+id).is(':checked');
+	if (open_check==true){
+		sel_num	= 1;
+	}
+	$(".f"+id+":checkbox").each(function (){ 
+		ck_num++;
+		sel_check = $(this).is(':checked');
+		if (sel_check==true){
+			sel_num++;
+		}
+	});
+	if (sel_num>0 || sel_num==0){
+		$('.open'+id).prop("checked",true);
+		$('.f'+id).prop("checked",true);
+	}
+	if (sel_num==ck_num){
+		$('.open'+id).prop("checked",false);
+		$('.f'+id).prop("checked",false);
+	}
+}
+</script>
+
+
+<!-- multi-selec -->
+<script>
+$(function(){
+	$('#pre-selected-options').multiSelect();
+})
+</script>
+<!-- multi-selec -->

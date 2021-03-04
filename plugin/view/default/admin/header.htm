@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="cn">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<title>{header_title}</title>
+	<!-- jQuery -->
+	<script src="https://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>var style_dir ='{style_dir}';
+	</script>
+	<script src="{style_dir}js/global.js"></script>
+	<!-- FoundPHP Style start -->
+	<!-- 自定义样式 -->
+	<link href="{style_dir}css/foundphp_style.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="{style_dir}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- fonticonpicker -->
+	<link href="{style_dir}js/fonticonpicker/jquery.fonticonpicker.min.css" rel="stylesheet">
+	<!-- 图标字库 -->
+	<link href="{style_dir}font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- 搜索下拉框 -->
+	<link rel="stylesheet" href="{style_dir}js/tinyselect/tinyselect.css">
+	<!-- 搜索下拉框 -->
+	
+	<!-- 自定义样式 -->
+	<link href="images/custom.min.css" rel="stylesheet">
+	<!-- FoundPHP Style end -->
+</head>
+<body class="nav-md">
+	<!-- IF(session('msg_success')==1) -->{run:session('msg_success','0')}
+	<script>sys_good('{page_msg['success']}');</script>
+	<!-- END -->
+	<!-- IF(session('msg_del')==1) -->{run:session('msg_del','0')}
+	<script>sys_good('{page_msg['del']}');</script>
+	<!-- END -->
+	
+	<div class="container body">
+	  <div class="main_container">
+		<div class="col-md-3 left_col">
+		  <div class="left_col scroll-view">
+
+
+			<!-- 快速信息提醒 -->
+			<div class="profile clearfix"  id="step1">
+				<!-- IF(is_file('style/css/logo.png')) -->
+				<div class="navbar nav_title"  style="border: 0;">
+					<a href="" class="site_title"><img src="style/css/logo.png"></a>
+				</div>
+				<div class="clearfix"></div>
+				<!-- END -->
+				
+				  <div class="profile_pic">
+					<!-- IF(is_file($aus['photo'])) -->
+					<img src="{aus['photo']}" alt="{aus[nickname]}" class="img-circle profile_img">
+					<!-- ELSE -->
+					<img src="data/files/avatars/FoundPHP.jpg" alt="{aus[nickname]}" class="img-circle profile_img">
+					<!-- END -->
+				  </div>
+				  <div class="profile_info">
+					<span><lang>你好,</lang></span>
+					<h2>{aus[nickname]}</h2>
+				  </div>
+			</div>
+			<!-- /menu profile quick info -->
+
+			<br />
+
+			<!-- sidebar 菜单 -->
+			<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				<div class="menu_section" id="step2">
+					 {sys_menu}
+				</div>
+			</div>
+			<!-- /sidebar 菜单 -->
+
+			<!-- /菜单底部按钮 -->
+			<div class="sidebar-footer hidden-small">
+			  <a data-toggle="tooltip" data-placement="top" href="?a=my_info&t=edit_myself&id={aus[id]}" title="<lang>资料修改</lang>">
+				<span class="fa fa-gear" aria-hidden="true"></span>
+			  </a>
+			  <a data-toggle="tooltip" data-placement="top" href="?a=my_info&t=password&id={aus[id]}" title="<lang>密码修改</lang>">
+				<span class="fa fa-lock" aria-hidden="true"></span>
+			  </a>
+			
+			  <a data-toggle="tooltip" data-placement="top" href="http://help.systn.com/?model=backend" title="<lang>使用帮助</lang>">
+				<span class="fa fa-comments" aria-hidden="true"></span>
+			  </a>
+			  <a data-toggle="tooltip" data-placement="top" href="?a=login&t=exit" title="<lang>安全退出</lang>">
+				<span class="fa fa-sign-out" aria-hidden="true"></span>
+			  </a>
+			</div>
+			<!-- /菜单底部按钮 -->
+		  </div>
+		</div>
+
+		<!-- 顶部导航 -->
+		<div class="top_nav" id="step3">
+		  <div class="nav_menu">
+			<nav>
+			  <div class="nav toggle">
+				<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+			  </div>
+
+			  <ul class="nav navbar-nav navbar-right">
+				<li class="">
+				  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					<!-- IF(is_file($aus['photo'])) -->
+						<img src="{aus['photo']}" alt="{aus[nickname]}">
+					<!-- ELSE -->
+						<img src="data/files/avatars/FoundPHP.jpg" alt="{aus[nickname]}">
+					<!-- END -->
+					{aus[nickname]}
+					<span class=" fa fa-angle-down"></span>
+				  </a>
+				  <ul class="dropdown-menu dropdown-usermenu pull-right">
+					<li><a href="?a=my_info&t=edit_myself&id={aus[id]}"><i class="fa fa-gear pull-right"></i><lang>资料修改</lang></a></li>
+					<li><a href="?a=my_info&t=password&id={aus[id]}"><i class="fa fa-lock pull-right"></i><lang>密码修改</lang></a></li>
+					<!-- <li><a href="?a=my_subaccount"><i class="fa fa-lock pull-right"></i><lang>建立子账号</lang></a></li> -->
+					
+					<!-- <li><a href="http://help.systn.com/?model=backend"><i class="fa fa-comments pull-right"></i><lang>使用帮助</lang></a></li> -->
+					<li><a href="?a=login&t=exit"><i class="fa fa-sign-out pull-right"></i><lang>安全退出</lang></a></li>
+				  </ul>
+				</li>
+				
+				<!-- DEl -->
+				<li role="presentation" class="dropdown">
+				  <a href="{config['set']['site_url']}" target="_blank" title="<lang>首页</lang>" alt="<lang>首页</lang>">
+					<i class="fa fa-home"></i>
+				  </a>
+				</li>
+				<!-- END -->
+				
+				<li role="presentation" class="dropdown">
+				
+				  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="height:40px;margin-top:13px;">
+					<i class="fa fa-envelope-o"></i>
+					<span class="badge bg-green">6</span>
+				  </a>
+				
+				  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+					<li>
+					  <a>
+						<span class="image"><img src="data/files/avatars/FoundPHP.jpg" alt="Profile Image" /></span>
+						<span>
+						  <span>John Smith</span>
+						  <span class="time">3 mins ago</span>
+						</span>
+						<span class="message">
+						  Film festivals used to be do-or-die moments for movie makers. They were where...
+						</span>
+					  </a>
+					</li>
+					
+					<li>
+					  <div class="text-center">
+						<a>
+						  <strong>See All Alerts</strong>
+						  <i class="fa fa-angle-right"></i>
+						</a>
+					  </div>
+					</li>
+				  </ul>
+				</li>
+				
+			  </ul>
+			</nav>
+		  </div>
+
+		</div>
+		<!-- /顶部导航 -->
+		
+		 
+		 
+		<!-- 页面内容 -->
+		<div class="right_col" role="main">

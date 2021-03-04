@@ -1,0 +1,53 @@
+﻿{run:echo search('admin_user_search');}
+
+
+<div class="x_title">
+  <h2>{title} </h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+			
+			<form method="post" class="form-horizontal" action="{form_adds}&todo=del">
+				
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><lang>用户名</lang> <!-- order:a.username --></th>
+							<th><lang>用户姓名</lang> <!-- order:a.nickname --></th>
+							<th><lang>管理组</lang> <!-- order:b.names --></th>
+							<th><lang>子账户</lang></th>
+							<th><lang>职位/头衔</lang></th>
+							<th><lang>邮箱</lang> <!-- order:email --></th>
+							<th><lang>手机/电话</lang></th>
+							<th><lang>访问时间</lang> <!-- order:a.last_date --></th>
+							<th><lang>访问IP</lang></th>
+						</tr>
+					</thead>
+					<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+					<tr>
+						<td><!-- IF($dls['states']<=0) --><i class="fa fa-times-circle text-danger" title="<lang>帐号已禁用</lang>"></i>&nbsp;<!-- END -->{dls['username']}</td>
+						<td><b>{dls['nickname']}</b></td>
+						<td>{group['names']}</td>
+						<td>{dls['son']} <lang>人</lang></td>
+						<td>{dls['position']}</td>
+						<td>{dls['email']}</td>
+						<td>{dls['phone']}</td>
+						<td><lang>注册：</lang>{run:echo ($dls['reg_date']>0)?dates($dls['reg_date']).'<br>':''}<lang>最近：</lang>{run:echo ($dls['last_date']>0)?dates($dls['last_date']):''}</td>
+						<td><!-- IF($dls['reg_ip']) --><lang>注册：</lang>{dls['reg_ip']}<br><!-- END --><lang>最近：</lang>{dls['last_ip']}</td>
+						
+					</tr>
+					<!-- END -->
+					<!-- IF($_i==0) -->
+					<tr>
+						<th colspan="11"><lang>抱歉，没有数据</lang></th>
+					</tr>
+					<!-- END -->
+				</table>
+				
+				{pages}
+			</form>
+			</div>
+		</div>
+

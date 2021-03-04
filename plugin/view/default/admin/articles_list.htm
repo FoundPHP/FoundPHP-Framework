@@ -1,0 +1,58 @@
+<!-- 全选/取消全选 -->
+<script type="text/javascript">
+	jQuery(function($) {
+		$('.sel_all').on('click', function(){
+			$('.sel_index').each(function(){
+				if ($(this).prop("checked"))$(this).prop("checked",false);else $(this).prop("checked",true);
+			});
+		});
+	})
+</script>
+
+{run:echo search();}
+<form method="post" class="form-horizontal" action="{page_url}&t=del">
+<div class="x_title">
+  <h2>{title} {run:echo add();} </h2>
+  <div class="clearfix"></div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+	
+		
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th width="80"><!-- IF(@array_key_exists('bdel',(array)$GLOBALS['now_powers'])) --><input type="checkbox" name="sel_all" class="sel_all" value="1"> <!-- END -->ID <!-- order:a.id --></th>
+					<th><lang>缩略图</lang></th>
+					<th><lang>类别</lang></th>
+					<th><lang>标题</lang></th>
+					<th width="260"><lang>简介</lang></th>
+					<th><lang>时间</lang></th>
+					
+					<th class="table_th_right"><lang>操作</lang></th>
+				</tr>
+			</thead>
+			<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+			<tr>
+				<th scope="row"><span class="lbl"><!-- IF(@array_key_exists('bdel',(array)$GLOBALS['now_powers'])) --><input type="checkbox" name="sel_index[{dls[$t_index]}]" class="sel_index" value="{dls[$t_index]}"> <!-- END -->{dls[$t_index]}</span></th>
+				<td><!-- IF(is_file($dls[thumbnail])) --><a href="{dls['thumbnail']}" target="_blank" title="<lang>点击放大查看</lang>"><img src="{dls[thumbnail]}" width="80"></a><!-- END --></td>
+				<td>{dls['cate_name']}</td>
+				<td>{dls['titles']}</td>
+				<td>{run:echo font_cut($dls[description],120);}</td>
+				<td><lang >发布：</lang>{run:echo dates($dls[date_add])}
+					<!-- IF($dls[date_edit]>0) --><br><lang >更新：</lang>{run:echo dates($dls[date_edit])}<!-- END --></td>
+				<td>{run:echo taction($dls[$t_index]);}</td>
+			</tr>
+			<!-- END -->
+			<!-- IF($_i==0) -->
+			<tr>
+				<th colspan="11"><lang>抱歉，没有数据</lang></th>
+			</tr>
+			<!-- END -->
+		</table>
+		
+		{pages}
+	</div>
+</div>
+</form>
+

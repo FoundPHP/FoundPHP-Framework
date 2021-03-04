@@ -1,0 +1,78 @@
+﻿
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2><lang>Cookie / Session设置</lang></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>Cookie跨域</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="COOKIE_SHARE" value="1" class="js-switch" {run:echo $COOKIE_SHARE?'checked':''}/>
+	  </label><small>&nbsp;&nbsp;<lang>允许网站cookie跨域名访问，但不安全</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>HTTPS支持</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="COOKIE_SECURE" value="1" class="js-switch" {run:echo $COOKIE_SECURE?'checked':''}/>
+	  </label><small>&nbsp;&nbsp;<lang>Cookie通过HTTPS连接传给客户端</lang></small>
+  </div>
+</div>
+
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>Cookie时效</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="number" name="COOKIE_EXPIRE" class="form-control " value="{run:echo $COOKIE_EXPIRE}">
+		<small>&nbsp;&nbsp;<lang>Cookie 的过期时间，单位为秒。例如：60则表示1分钟后过期。</lang></small>
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>Cookie路径</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="COOKIE_PATH" class="form-control " value="{run:echo $COOKIE_PATH}">
+		<small>&nbsp;&nbsp;<lang>Cookie 有效的服务器路径。 设置成 '/' 时，Cookie 对整个域名 domain 有效。</lang></small>
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>Cookie域名</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="COOKIE_DOMAIN" class="form-control " value="{run:echo $COOKIE_DOMAIN}">
+		<small>&nbsp;&nbsp;<lang>请根据当前网站设置cookie域名，默认可以不改</lang></small>
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>Session时效</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="number" name="SESSION_EXPIRE" class="form-control " value="{run:echo $SESSION_EXPIRE}">
+		<small>&nbsp;&nbsp;<lang>Session 的过期时间，单位为秒。例如：3600则表示1小时后过期。</lang></small>
+	</div>
+</div>
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button> <button type="button" class="btn btn-primary" id="preview"><lang>预览</lang></button></div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>
+
+
+

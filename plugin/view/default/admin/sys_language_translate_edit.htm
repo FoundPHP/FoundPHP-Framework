@@ -1,0 +1,119 @@
+<style>
+	.text_big{
+		font-size:14px;
+	}
+	.x_content .flex ul.count2{border-top:none!important}
+	.x_content .flex ul.count2 li{width: calc(20% - 5px);}
+	
+	.x_content .flex ul.count2 span{font-size:20px;color:#dedede}
+	.text-warning{color:#d7d002!important}
+	.text-success{color:#7fdb6e!important}
+	.text-primary{color:#40a1e5!important}
+	.page_save {float:right;}
+	.page_save .pagination{margin:0;float:left;margin-right:10px}
+	.page_save .btn{float:left;margin-right:20px}
+	.fps-ipt.fps-blue:focus{border:solid 1px #40a1e5;color:#40a1e5}
+ 
+	.widget_tally_box .fixed_height_290:hover{border:solid 1px #40a1e5}
+	.widget_tally_box .foundphp-style:hover{border:solid 1px #40a1e5;}
+	.textarea_shadow{border:solid 1px #40a1e5;filter:progid:DXImageTransform.Microsoft.Shadow(color=#999999,direction=120,strength=4);  
+ -moz-box-shadow: 2px 2px 15px #999999;-webkit-box-shadow: 2px 2px 15px #999999;box-shadow:2px 2px 15px #999999; }  
+	
+</style>
+<div class="col-md-12 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>
+	<i class="fa fa-bars"></i> {title} 
+	<img src="{style_dir}country/{delang['language']}.gif" width="20" /> {delang['cate_name']}  <img src="images/translate.png" width="20" />  <img src="{style_dir}country/{get_lang['language']}.gif" width="20" /> {get_lang['cate_name']}
+	
+	<!-- IF($updates_lang>0) -->
+	<small class="label-primary" style="border-radius:0;padding:0 5px;color:#fff"><lang>需更新</lang>{updates_lang}<lang>条翻译数据</lang> </small>
+	<!-- END -->
+  </h2>
+  
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<div class="" role="tabpanel" data-example-id="togglable-tabs">
+  <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+	<li role="presentation" class="{run:echo $s==1?'active':''}"><a href="?a={a}&t={t}&id={id}&s=1"><lang>后台</lang></a>
+	</li>
+	<li role="presentation" class="{run:echo $s==2?'active':''}"><a href="?a={a}&t={t}&id={id}&s=2" ><lang>前台</lang></a>
+	</li>
+  </ul>
+  <div id="myTabContent" class="tab-content">
+	<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+		
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+	  <div class="page_save">
+		{pages}<button type="submit" class="btn btn-success"><lang>保存</lang></button>
+		</div>
+		
+		<div class="clearfix"></div>
+	<!--$lang_data AS $k=>$v -->
+	<div class="col-md-3 col-xs-12 widget widget_tally_box" style="height:290px">
+		<div class="x_panel fixed_height_290">
+		  <div class="x_content">
+			<div class="flex">
+			  <ul class="list-inline count2">
+				<li >
+				 <span class="text-warning"><img src="{style_dir}country/{delang['language']}.gif" width="20" /> </span>
+				</li>
+				<li  title="<lang>建立时间:</lang>{run:echo $v['dates']}">
+				  <span class="text-warning"><i class="fa fa-clock-o"></i></span>
+				</li>
+				<li  title="<lang>翻译时间:</lang>{run:echo dates($v['tra_dates'])}">
+				 
+				  <span class="{run:echo $v['tra_dates']>0?'text-success':''}" ><i class="fa fa-stack-exchange"></i></span>
+				</li>
+				<li title="<lang>校验时间:</lang>{run:echo $v['check_dates']>0?dates($v['check_dates']):'-'}">
+				  
+				  <span class="{run:echo $v['check_dates']>0?'text-primary':''}" ><i class="fa fa-check-square-o"></i></span>
+				</li>
+				<li >
+				  
+				 <span class="text-warning"> <img src="{style_dir}country/{get_lang['language']}.gif" width="20" />  </span>
+				</li>
+			  </ul>
+			</div>
+			<div class="flex">
+					<textarea class="fps-ipt fps-blue form-control input_focus" name="check[{v['md5']}]"  type="text" placeholder="placeholder"  style="height:80px">{v['str']}</textarea>
+			</div>
+			<p style="text-align:left;margin-top:10px;height: 70px;overflow-y: scroll;color:#999">
+				{run:echo $delang_trans[$v['md5']]['str']}
+			</p>
+		  </div>
+		</div>
+	  </div>
+	<!--END-->
+	<div class="page_save">
+	{pages}<button type="submit" class="btn btn-success"><lang>保存</lang></button>
+	</div>
+	
+  </form>
+  
+	</div>
+  </div>
+	
+</div>
+</div>
+</div>
+</div>
+
+<script>
+$(function(){
+	$('.input_focus').focus(function(){
+		$(this).parent().addClass('textarea_shadow')
+		//$(this).css('height','70px')
+	})
+	$('.input_focus').blur(function(){
+		$(this).parent().removeClass('textarea_shadow')
+		//$(this).css('height','80px')
+	})
+
+})
+</script>
+

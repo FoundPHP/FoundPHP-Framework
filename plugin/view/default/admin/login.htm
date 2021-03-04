@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{title}</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<link href="{style_dir}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="images/login.css">
+	<script src="https://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>var style_dir ='{style_dir}';
+	</script>
+	<script src="{style_dir}js/global.js"></script>
+</head>
+<body>
+<div class="aui-register-popup">
+	<div class="aui-register-box">
+
+		<div class="aui-register-logo">
+			<img src="images/logo.png" alt="">
+		</div>
+		<div class="aui-register-form" id="verifyCheck">
+			<div class="register-wrap" id="register-wrap">
+				<div class="register" id="register">
+					<div class="register-top" id="reg-top">
+						<h2 class="normal" id="normal">帐号密码登录</h2>
+						<h2 class="nopassword" id="nopw">手机免密登录</h2>
+						
+						<a id="qrcode" href="#">
+							<span class="aui-tag-size">扫码登录</span>
+						</a>
+					</div>
+					<!--账户密码登录-->
+					<div class="register-con" id="rc">
+						<form role="form" action="{FoundPHP_entr}?a=login" id="login-input" method="post" class="login-form">
+						<div class="aui-register-form-item">
+							<input type="text" name="username" maxlength="20" placeholder="账户名" class="txt03 f-r3 required" data-valid="isNonEmpty||between:3-20||isUname" data-error="<i class='icon-tips'></i>您还没有输入账户名||<i class='icon-tips'></i>用户名长度3-20位||<i class='icon-tips'></i>只能输入字母、数字、且以中文或字母开头" id="adminNo">
+							<label class="focus valid"></label>
+						</div>
+						<div class="aui-register-form-item">
+							<input type="password" name="password" placeholder="密码" id="password" maxlength="20" class="txt04 f-r3 required" style="ime-mode:disabled;" onpaste="return  false" autocomplete="off" data-valid="isNonEmpty||between:5-20" data-error="<i class='icon-tips'></i>密码太短，最少5位||<i class='icon-tips'></i>密码长度5-20位">
+							<label class="focus valid"></label>
+						</div>
+						<!-- IF($login_err>=2) -->
+						<div class="aui-register-form-item">
+							<input type="text" name="code" autocomplete="off" placeholder="验证码" class="txt01 f-r3 required" keycodes="tel" data-valid="isNonEmpty||between:4-6" data-error="<i class='icon-tips'></i>请输入验证码||<i class='icon-tips'></i>验证码不正确" maxlength="11" id="phone">
+							<label class="focus valid"><div class="msg" style="display:none"><i class='icon-tips'></i>您还未输入手机号</div></label>
+							<span class="aui-get-code btn btn-gray f-r3 f-ml5 f-size13" id="time_box" disabled style="display:none;"></span>
+							<span class="aui-get-code btn btn-gray f-r3 f-ml5 f-size13" style="padding-left:2px;padding-right:2px;"><img id="verify_code" style="margin-top:-5px;" src="admin.php?a=login&t=code&n={run:echo rand(1,99)}"></span>
+						</div>
+						<!-- END -->
+						<div class="aui-register-form-item">
+							<input id="FoundPHP-login" class="FoundPHP-login" placeholder="" readonly="readonly" value="登录">
+						</div>
+						</form>
+					</div>
+
+					<!--手机动态码登录-->
+					<!-- IF($config['sms']['id']) -->
+					 <!-- END -->
+				   <div class="login-con" id="lc">
+						<form role="form" action="{FoundPHP_entr}?a=login&t=mobile" id="login-mobile" method="post" class="login-form">
+						<div class="aui-register-form-item">
+							<input type="text" name="mobile" placeholder="手机号码" class="txt01 f-r3 required" keycodes="tel" data-valid="isNonEmpty||isPhone" data-error="<i class='icon-tips'></i>请输入手机号||<i class='icon-tips'></i>手机号码格式不正确" maxlength="11" id="phone">
+							<label class="focus valid"><div class="msg" style="display:none"><i class='icon-tips'></i>您还未输入手机号</div></label>
+							<span class="aui-get-code btn btn-gray f-r3 f-ml5 f-size13" id="time_box" disabled style="display:none;"></span>
+							<span class="aui-get-code btn btn-gray f-r3 f-ml5 f-size13" id="verifyYz">获取动态码</span>
+						</div>
+						<div class="aui-register-form-item">
+							<input type="text" name="code" placeholder="动态码" maxlength="6" id="verifyNo" class="txt02 f-r3 f-fl required" data-valid="isNonEmpty||isInt" data-error="<i class='icon-tips'></i>请填写正确的手机动态码||<i class='icon-tips'></i>请填写6位手机动态码">
+							<label class="focus valid"></label>
+						</div>
+						<div class="aui-register-form-item">
+							<input id="FoundPHP-login-mobile" class="FoundPHP-login" placeholder="" readonly="readonly" value="登录">
+						</div>
+						</form>
+					</div>
+
+					<!-- 扫码登录 -->
+					<div class="saoma" id="sm">
+						<div class="screen-tu" id="screen">
+							<span class="aui-tag-size">密码登录</span>
+						</div>
+						<div class="aui-text-item">
+							<h1>微信扫码登录，自动登录系统</h1>
+						</div>
+						<div class="qr-code">
+							<span class="tips_img"></span>
+							<img src="images/qrcode.jpg" alt="">
+						</div>
+					</div>
+					<div class="aui-protocol">
+						<a href="http://www.foundphp.com/?m=agreement" target="_blank">《FoundPHP Framework 授权协议》</a>
+						&nbsp;&nbsp;<a href="http://www.foundphp.com/?m=faq&s=password" target="_blank">忘记密码</a>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="aui-register-bottom">
+			<a href="http://www.foundphp.com/" target="_blank">FoundPHP Framework ©2005-2021 Support <span {run:echo intval(PHP_VERSION)==5?'style="color:#999"':''}>PHP5</span>, <span {run:echo intval(PHP_VERSION)==7?'style="color:#999"':''}>PHP7</span>, <span {run:echo intval(PHP_VERSION)==8?'style="color:#999"':''}>PHP8</span></a>
+			<a href="http://www.foundphp.com/?m=faq" target="_blank">帮助中心</a>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="images/login.js"></script>
+<script type="text/javascript">
+	$(function () {
+		//绑定回车动作
+		$('#login-input').keydown(function(event){
+			if(event.which==13){
+				$("#FoundPHP-login").click();
+			}
+		});
+		$("#FoundPHP-login").click(function () {
+			if (!verifyCheck._click()){ return false;}
+			$('#login-input').submit()
+		});
+		//绑定回车动作
+		$('#login-mobile').keydown(function(event){
+			if(event.which==13){
+				$("#FoundPHP-login").click();
+			}
+		});
+		$("#FoundPHP-login-mobile").click(function () {
+			if (!verifyCheck._click()){ return false;}
+			$('#login-mobile').submit()
+		});
+		$("#verify_code").click(function () {
+			$('#verify_code').hide(500);
+			var src	= "?m={m}&a={a}&t=code#{run:echo rand(0,9)}";
+			$('#verify_code').attr('src',src)
+			$('#verify_code').show(100);
+		});
+	});
+</script>
+
+
+</body>
+</html>

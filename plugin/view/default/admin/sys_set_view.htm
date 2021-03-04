@@ -1,0 +1,55 @@
+
+
+<div class="col-md-6 col-xs-12">
+<div class="x_panel">
+<div class="x_title">
+  <h2>{title} <small><lang>视图功能设置</lang></small></h2>
+  <div class="clearfix"></div>
+</div>
+<div class="x_content">
+<br>
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>自动解图</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="AutoImage" value="1" class="js-switch" {run:echo $config['tpl']['AutoImage']?'checked':''}/>
+	  </label><small>&nbsp;&nbsp;<lang>自动解析模版中径含有images文件</lang></small>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>源码压缩</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="Compress" value="1" class="js-switch" {run:echo $config['tpl']['Compress']?'checked':''}/>
+	  </label><small>&nbsp;&nbsp;<lang>压缩页面输出中代码节省带宽流量</lang></small>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>地址重写</lang></label>
+  <div class="col-md-9 col-sm-9 col-xs-12">
+	  <label>
+		<input type="checkbox" name="Rewrite" value="1" class="js-switch" {run:echo $config['tpl']['Rewrite']?'checked':''} />
+	  </label><small>&nbsp;&nbsp;<lang></lang></small>
+  </div>
+</div>
+<div class="form-group">
+	<label class="control-label col-md-2 col-sm-2 col-xs-12"><lang>静态化目录</lang></label>
+	<div class="col-md-9 col-sm-9 col-xs-12">
+		<input type="text" name="HtmDir" class="form-control " value="{config['tpl']['HtmDir']}">
+	</div>
+</div>
+
+
+	<div class="ln_solid"></div>
+	<div class="form-group">
+	<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3"><button type="submit" class="btn btn-success"><lang>保存</lang></button> </div>
+	</div>
+
+  </form>
+</div>
+</div>
+
+</div>

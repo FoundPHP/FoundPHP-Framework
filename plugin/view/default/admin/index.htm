@@ -1,0 +1,286 @@
+
+
+       	<div class="">
+         	<div class="row top_tiles">
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon" style="right: 8px;top: -5px;"><i style="font-size:25px;" class="fa fa-clock-o"></i></div>
+               	<div class="count"></div>
+               	<h3>当前时间</h3>
+                     	<p>{run: echo date("Y/n/j H:i:s")}</p>
+             	</div>
+           	</div>
+              
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon" style="right: 8px;top: -5px;"><i style="font-size:25px;" class="fa fa-cloud"></i></div>
+               	<h3>域名/IP地址</h3>
+                     	<p>{run: echo $_SERVER['SERVER_NAME']} ({run: echo @gethostbyname($_SERVER['SERVER_NAME'])})</p>
+             	</div>
+           	</div>
+              
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon" style="right: 8px;top: -5px;"><i style="font-size:25px;" class="fa fa-desktop"></i></div>
+               	<h3>服务器系统操作</h3>
+                     	<p>{run: $os = explode(" ", php_uname()); echo $os[0];} / {run: echo $os[1];}</p>
+             	</div>
+           	</div>
+              
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon" style="right: 8px;top: -5px;"><i style="font-size:25px;" class="fa fa-paper-plane-o"></i></div>
+               	<div class="count"></div>
+               	<h3>服务器解译引擎</h3>
+                     	<p>{run: echo $_SERVER['SERVER_SOFTWARE']}</p>
+             	</div>
+           	</div>
+            
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon"><i class="fa fa-users"></i></div>
+               	<div class="count">{xy_nums}</div>
+               	<h3>在线报名人数</h3>
+             	</div>
+           	</div>
+              
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon"><i class="fa fa-briefcase"></i></div>
+               	<div class="count">{jm_nums}</div>
+               	<h3>在线加盟意向</h3>
+             	</div>
+           	</div>
+              
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon"><i class="fa fa-cube"></i></div>
+               	<div class="count">{chanpin}</div>
+               	<h3>展示产品数量</h3>
+             	</div>
+           	</div>
+              
+           	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             	<div class="tile-stats">
+               	<div class="icon"><i class="fa fa-gift"></i></div>
+               	<div class="count">{pinpai}</div>
+               	<h3>拥有品牌数量</h3>
+             	</div>
+           	</div>
+              
+         	</div>
+
+         	<div class="row">
+           	<div class="col-md-4">
+             	<div class="x_panel">
+               	<div class="x_title">
+                 	<h2>报名学员 <small>Top 10</small></h2>
+
+                 	<div class="clearfix"></div>
+               	</div>
+               	<div class="x_content">
+               	<!-- $jm_list AS $k=>$v -->
+                 	<article class="media event">
+                   	<a class="pull-left date">
+                     	<p class="month">{run:echo dates($v['dateline'],'m-d H:i');}</p>
+                   	</a>
+                   	<div class="media-body">
+                     	<a class="title" href="#">{v[username]}</a>
+                     	<p>{v[mobile]}</p>
+                   	</div>
+                 	</article>
+                 	<!-- END -->
+               	<!-- IF($_i<=0) -->
+                 	<article class="media event">
+                   	<div class="media-body">
+                     	<p>没有报名信息</p>
+                   	</div>
+                 	</article>
+               	<!-- END -->
+               	</div>
+             	</div>
+           	</div>
+
+           	<div class="col-md-4">
+             	<div class="x_panel">
+               	<div class="x_title">
+                 	<h2>在线加盟 <small>Top 10</small></h2>
+                 	<div class="clearfix"></div>
+               	</div>
+               	<div class="x_content">
+                    
+               	<!-- $jm_list AS $k=>$v -->
+                 	<article class="media event">
+                   	<a class="pull-left date">
+                     	<p class="month">{run:echo dates($v['dateline'],'m-d H:i');}</p>
+                   	</a>
+                   	<div class="media-body">
+                     	<a class="title" href="#">{v[username]}</a>
+                     	<p>{v[mobile]}</p>
+                   	</div>
+                 	</article>
+                 	<!-- END -->
+               	<!-- IF($_i<=0) -->
+                 	<article class="media event">
+                   	<div class="media-body">
+                     	<p>没有加盟信息</p>
+                   	</div>
+                 	</article>
+               	<!-- END -->
+               	</div>
+             	</div>
+           	</div>
+
+           	<div class="col-md-4">
+             	<div class="x_panel">
+               	<div class="x_title">
+                 	<h2>最新文章 <small>Top 10</small></h2>
+                 	<div class="clearfix"></div>
+               	</div>
+               	<div class="x_content">
+               	<!-- $article_list[rows] AS $k=>$v -->
+                 	<article class="media event">
+                   	<a class="pull-left date">
+                     	<p class="month">{run:echo dates($v['dateline'],'m-d H:i');}</p>
+                   	</a>
+                   	<div class="media-body">
+                     	<a class="title" href="#">{v[cate_name]}</a>
+                     	<p>{run:echo $v[titles]}</p>
+                   	</div>
+                 	</article>
+               	<!-- END -->
+               	<!-- IF($_i<=0) -->
+                 	<article class="media event">
+                   	<div class="media-body">
+                     	<p>没有文章</p>
+                   	</div>
+                 	</article>
+               	<!-- END -->
+               	</div>
+             	</div>
+           	</div>
+         	</div>
+       	</div>
+     	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DEL -->
+
+
+
+
+
+
+<!-- #页面标题 -->
+<div class="page-header">
+	<h1>
+		{page_title}
+	</h1>
+</div>
+<!-- /页面标题 -->
+ 
+ 
+<div class="row">
+							<div class="col-xs-12">
+								<form class="form-horizontal" role="form">
+									<!-- #section:elements.form -->
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1"><lang>当前时间</lang></label>
+
+										<div class="col-sm-10 from_text_fix">
+											{run: echo date("Y/n/j H:i:s")}
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-1-1"> <lang>北京时间</lang> </label>
+
+										<div class="col-sm-10 from_text_fix">
+											{run: echo gmdate("Y/n/j H:i:s",time()+8*3600)}
+										</div>
+									</div>
+
+									<!-- /section:elements.form -->
+									
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-2"> <lang>服务器域名/IP地址</lang> </label>
+
+										<div class="col-sm-10 from_text_fix">
+											{run: echo $_SERVER['SERVER_NAME']} ({run: echo @gethostbyname($_SERVER['SERVER_NAME'])})
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-input-readonly"> <lang>服务器系统操作</lang> </label>
+
+										<div class="col-sm-10 from_text_fix">
+											{run: $os = explode(" ", php_uname()); echo $os[0];} / {run: echo $os[1];}
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-4"><lang>服务器解译引擎</lang></label>
+
+										<div class="col-sm-10 from_text_fix">
+											{run: echo $_SERVER['SERVER_SOFTWARE']}
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right" for="form-field-5"><lang>Web服务端口</lang></label>
+
+										<div class="col-sm-10 from_text_fix">
+											{run: echo $_SERVER['SERVER_PORT']}
+										</div>
+									</div>
+
+ 									<!-- DEL -->
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-1 col-md-11">
+											<button class="btn btn-info" type="button">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												<lang>提交</lang>
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												<lang>重置</lang>
+											</button>
+										</div>
+									</div>
+									<!-- END -->
+								</form>
+						</div>
+ 
+ 
+  <!-- END -->
+ 
+ 

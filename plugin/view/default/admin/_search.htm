@@ -1,0 +1,23 @@
+<div class="x_title">
+<form class="form-horizontal form-label-left input_mask" method="POST" action="{post_url}">
+<input name="o" value="1" type="hidden">
+	<div class="col-md-12 col-sm-12 col-xs-12 ">
+		<h2><lang>数据搜索</lang></h2>
+	</div>
+	
+
+		<!-- $_search_input AS $k=>$v --> 
+		<div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+		<input type="text" class="fps-ipt fps-blue" id="{v[name]}" name="key[{v[name]}]" placeholder="<lang>输入搜索：</lang>{v[title]}" value="{v[value]}">
+		</div>
+		<!-- END -->
+
+	<div class="col-md-9 col-sm-9 col-xs-12 ">
+		<button type="submit" class="btn btn-success"><lang>搜索</lang></button>
+		<!-- IF(count((array)$_search_val)>0) -->
+			<button type="button" class="btn btn-primary" onclick="location='{page_url}&s=clear';"><lang>清空搜索</lang></button>
+		<!-- END -->
+
+	</div>
+</form>
+</div>

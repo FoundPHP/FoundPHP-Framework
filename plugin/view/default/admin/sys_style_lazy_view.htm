@@ -1,0 +1,39 @@
+﻿<!-- jQuery -->
+<script src="{style_dir}js/jquery.1.min.js"></script>
+<script src="{style_dir}js/jquery.lazyload.js"></script>
+
+
+<div id="container">
+<lang>向下拖动</lang>
+		<br/><br/><br/><br/><br/><br/>
+		<lazy class="lazy" src="https://www.w3cways.com/demo/LazyLoad/img/bmw_m1_hood.jpg" width="100%" alt="BMW M1 Hood">
+             	<br/><br/>
+		<lazy class="lazy" src="https://www.w3cways.com/demo/LazyLoad/img/bmw_m1_side.jpg" width="100%" alt="BMW M1 Side">
+             	<br/><br/>
+		<lazy class="lazy" src="https://www.w3cways.com/demo/LazyLoad/img/viper_1.jpg" width="100%" alt="Viper 1">
+             	<br/><br/>
+		<lazy class="lazy" src="https://www.w3cways.com/demo/LazyLoad/img/viper_corner.jpg" width="100%" alt="Viper Corner">
+             	<br/><br/>
+		<lazy class="lazy" src="https://www.w3cways.com/demo/LazyLoad/img/bmw_m3_gt.jpg" width="100%" alt="BMW M3 GT">
+             	<br/><br/>
+		<lazy class="lazy" src="https://www.w3cways.com/demo/LazyLoad/img/corvette_pitstop.jpg" width="100%" alt="Corvette Pitstop">
+		
+</div>
+<!-- IF($fadein==1) -->
+ 	<script type="text/javascript">
+        $(function () {
+            $("img.lazy").lazyload({
+            	threshold : {threshold},
+                effect: "fadeIn"
+            });
+        });
+ 	</script>
+<!-- ELSE -->
+ 	<script type="text/javascript">
+        $(function () {
+            $("img.lazy").lazyload({
+            	threshold : {threshold}
+            });
+        });
+ 	</script>
+<!-- END -->

@@ -1,0 +1,65 @@
+﻿{run:echo search('admin_user_search');}
+
+
+<div class="x_title">
+  <h2>{title} {run:echo add();}</h2>
+  <div class="clearfix"></div>
+</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+			
+			<form method="post" class="form-horizontal" action="{form_adds}&todo=del">
+				
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><lang>用户名</lang> <!-- order:a.username --></th>
+							<th><lang>用户姓名</lang> <!-- order:a.nickname --></th>
+							<th><lang>管理组</lang> <!-- order:b.names --></th>
+							<th><lang>子账户</lang> <!-- order:b.son --></th>
+							<th><lang>职位/头衔</lang></th>
+							<th><lang>性别</lang> <!-- order:a.gender --></th>
+							<th><lang>邮箱</lang> <!-- order:email --></th>
+							<th><lang>手机/电话</lang></th>
+							<th><lang>状态</lang></th>
+							<th><lang>访问时间</lang> <!-- order:a.last_date --></th>
+							<th><lang>访问IP</lang></th>
+							<th class="table_th_right"><lang>操作</lang></th>
+						</tr>
+					</thead>
+					<!-- while:$dls = $db->fetch_array($data_info['query']) -->
+					<tr>
+						<td>{dls['username']}</td>
+						<td><b>{dls['nickname']}</b></td>
+						<td>{dls['names']}</td>
+						<td>{dls['son']} <lang>人</lang></td>
+						<td>{dls['position']}</td>
+						<td><!-- IF($dls['gender']==1) -->男<!-- END --><!-- IF($dls['gender']==2) -->女<!-- END --></td>
+						<td>{dls['email']}</td>
+						<td>{dls['phone']}</td>
+						<td><!-- IF($dls['states']==1) --><span class="blue">正常</span>&nbsp;&nbsp;<i class="fps-circle fps-circle-3d green flash flash-{run:echo rand(1,4)} mini" title="<lang>帐号已禁用</lang>"></i><!-- ELSE --><span class="fps-red">禁用</span>&nbsp;&nbsp;<i class="fps-circle fps-circle-3d fps-red fps-mini" title="<lang>帐号已禁用</lang>" onclick=""></i><!-- END --></td>
+						<td><lang>注册：</lang>{run:echo ($dls['reg_date']>0)?dates($dls['reg_date']).'<br>':''}<lang>最近：</lang>{run:echo ($dls['last_date']>0)?dates($dls['last_date']):''}</td>
+						<td><!-- IF($dls['reg_ip']) --><lang>注册：</lang>{dls['reg_ip']}<br><!-- END --><lang>最近：</lang>{dls['last_ip']}</td>
+						<td>{run:echo taction($dls[$t_index],($aus[id]==$dls[id] || $dls[id]==1?array('del','edit'):'')); }</td>
+					</tr>
+					<!-- END -->
+					<!-- IF($_i==0) -->
+					<tr>
+						<th colspan="11"><lang>抱歉，没有数据</lang></th>
+					</tr>
+					<!-- END -->
+				</table>
+				
+				{pages}
+			</form>
+			</div>
+		</div>
+
+<script>
+function tip_msg(msg){
+	layer.tips(msg, '#id或者.class', {
+		tips: [4, '#78BA32']
+	});
+}
+</script>
