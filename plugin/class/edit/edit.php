@@ -1,11 +1,17 @@
 <?php
 /*	(C)2005-2021 FoundPHP Framework.
-*	官网：http://www.FoundPHP.com
-*	邮箱：43309611@qq.com
+*	   name: Ease Template
+*	 weburl: http://www.FoundPHP.com
+* 	   mail: master@FoundPHP.com
+*	 author: 孟大川
+*	version: 1.21.34
+*	  start: 2013-02-19
+*	 update: 2021-03-04
+*	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
 *	此软件为授权使用软件，请参考软件协议。
 *	http://www.foundphp.com/?m=agreement
-*	Last：2020-01-20
+
 */
 
 class FoundPHP_edit{
@@ -13,10 +19,6 @@ class FoundPHP_edit{
 
 	//构造快递方法
 	function __construct($ary=array()) {
-		
-		if (!isset($ary['type']) || $ary['type'] == '') {
-			return '请设置类型';
-		}
 		
 		$this->type 	= strtolower($ary['type']);
 		//默认字符文本
@@ -30,7 +32,7 @@ class FoundPHP_edit{
 				$this->ed 	= new edit_api($ary);
 				
 			}else{
-				die('抱歉，找不到 '.$this->type.' 库');//不存在
+				$this->type	= 'text';
 			}
 		}
 	}
