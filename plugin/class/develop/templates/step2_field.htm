@@ -1,0 +1,15 @@
+<label for="basic" class="control-label col-md-offset-2 col-sm-offset-2 col-md-1 col-sm-1 col-xs-12"><lang>关联字段</lang></label>
+<div class="col-md-6 col-sm-6 col-xs-12 s-select">
+	<input type="text" class="form-control" name="ljoin[{now}]" id="ljoin_{now}" value="{_SESSION['table'][$now][ljoin]}">
+	<select size="11" name="ljoin_a[{now}]" id="ljoina_{now}" lang="{now}" tip='' class="sa ljoina_{now}">
+	<!-- $table1 AS $ak=>$av -->
+		<option value="{av['name']}" {run:echo $ljoina[1]==$av['name']?'selected':''}>{av['name']}{run:echo $av[comment]?'  【'.$av[comment].'】':''}</option>
+	<!-- END -->
+	</select>
+	<select size="11" name="ljoin_b[{now}]" id="ljoinb_{now}" lang="{now}" class="sb ljoinb_{now}">
+	<!-- $table2 AS $bk=>$bv -->
+		<option value="{bv['name']}" {run:echo $ljoinb[1]==$bv['name']?'selected':''}>{bv['name']}{run:echo $bv[comment]?'  【'.$bv[comment].'】':''}</option>
+	<!-- END -->
+	</select>
+</div>
+<div class="clearfix"></div>

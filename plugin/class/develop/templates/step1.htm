@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>FoundPHP Framework - <lang>开发工具</lang></title>
+
+    <!-- Bootstrap -->
+    <link href="data/style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="data/style/css/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="data/style/css/bootstrap-select/bootstrap-select.css">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        
+
+        
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>FoundPHP Framework - <lang>开发工具</lang></h3>
+              </div>
+
+              
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+            <form method="POST" class="form-horizontal form-label-left" action="{post_url}">
+            <input name="o" value="1" type="hidden">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><lang>自动化工具</lang></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+
+                    <!-- Smart Wizard -->
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                    
+                      <ul class="wizard_steps">
+                      	<!-- $result[step] AS $k=>$v -->
+                      	<!-- IF($v[s]==1) -->
+                      	{run:$sel_t = $k-1;}
+                      	<!-- END -->
+                      	<li><a href="{run:echo $v[s]>0?str_replace('t='.$t,'t='.$k,$page_url):'#';}" class="{run:echo $FoundPHP->step_icon($v[s]);}">
+                      		<span class="step_no">{k}</span><span class="step_descr"><b>{v[n]}</b><br /><small>{v[d]}</small></span>
+                      	</a></li>
+                      	<!-- END -->
+                      </ul>
+                      
+                      
+                      <div id="step">
+                      		<!-- $result[page] AS $k=>$v -->
+							<div class="form-group"><label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required"><!-- IF($v[r]==1) -->*<!-- END --></span> {v[n]}</label>
+                            			<div class="col-md-6 col-sm-6 col-xs-12">{run:$FoundPHP->step_input($v[t],$v[out])}</div></div>
+							<!-- END -->
+							
+							<div class="form-group sel_model" {run:echo ($get_data['model'] && $get_data[action])?'':'style="display:none;"'}><label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">模块来源</label>
+                           	<div class="col-md-3 col-sm-3 col-xs-12">
+								<select size="1" name="model" id="model" class="form-control col-md-6 col-sm-6">
+								<option value=""><lang>选择模块</lang></option>
+								<!-- $model_dir AS $k=>$v -->
+								<option value="{k}" {run:echo $get_data['model']==$k?'selected':''}>{v}</option>
+								<!-- END -->
+								</select>
+							
+                           	</div>
+                           	<div class="col-md-3 col-sm-3 col-xs-12">
+                           		<select size="1" name="action" id="action" class="form-control col-md-6 col-sm-6">
+								<option value=""><lang>选择功能</lang></option>
+								<!-- $get_file AS $k=>$v -->
+								<!-- IF(strstr($k,'.php')) -->
+								<option value="{v}" {run:echo $get_data['action']==$v?'selected':''}>{k}</option>
+								<!-- END -->
+								<!-- END -->
+								
+								</select>
+                           	</div>
+                           	</div>
+                      </div>
+                      
+
+                    </div>
+                    <!-- End SmartWizard Content -->
+
+
+
+
+
+                    <div class="actionBar">
+					<!-- IF($result[step][1][s]!=1) -->
+					<button type="button" class="buttonNext btn btn-success">上一步 </button>
+					<!-- END -->
+					<button type="submit" class="buttonPrevious  btn btn-primary">下一步</button></div>
+                    <!-- End SmartWizard Content -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+          
+		<div class="pull-right">
+			PHP by <a href="http://FoundPHP.com" target="_blank">FoundPHP</a>, Template by <a href="http://et.systn.com" target="_blank">ET</a>
+		</div>
+        </div>
+        <!-- /page content -->
+		
+       
+      </div>
+    </div>
+	
+	<!-- jQuery -->
+	<script src="data/style/js/jquery.1.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="data/style/bootstrap/js/bootstrap.min.js"></script>
+	<script src="data/style/js/bootstrap-select/bootstrap-select.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('input[name=types]').on('ifClicked', function(event){ //ifCreated 事件应该在插件初始化之前绑定 
+			id = $(this).attr('value');
+			if (id==3){
+				$('.sel_model').show();
+			}else{
+				$('.sel_model').hide();
+			}
+		});
+		
+		$('#model').change(function(){
+			if($(this).val()==''){
+			//	$('#action').hide();
+			}else{
+				
+				$.ajax({
+					url: "{page_url}&s="+$(this).val(),
+					dataType:"html",
+					cache: false,
+					success: function(data) {
+						var obj = eval("("+data+")");
+						$("#action option").remove();
+						$("#action").append("<option value=\"\"><lang>选择功能</lang></option>");
+						Reflect.ownKeys(obj).forEach(function(key){
+							$("#action").append("<option value='"+obj[key]+"'>"+key+"</option>");
+								console.log(key,obj[key]);
+						});
+					}
+				});
+				
+				
+			}
+		});
+	});
+	//提交后退显示下拉框
+	window.setInterval(showcheck,500); 
+	function showcheck() { 
+		$('input[name="types"]:checked').each(function() {  
+			if ($(this).val()==3){
+				$('.sel_model').show();
+			}else{
+				$('.sel_model').hide();
+			}
+		});  
+	} 
+	</script>
+  </body>
+</html>

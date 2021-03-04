@@ -1,0 +1,29 @@
+							<div class="form-group t{now}">
+								<hr>
+									<div class="table">
+										<label for="basic" class="control-label col-md-offset-2 col-sm-offset-2 col-md-1 col-sm-1 col-xs-12"> 表{now}</label>
+										<div class="col-md-2 col-sm-2 col-xs-12">
+											<select class="selectpicker show-tick form-control tablea" data-live-search="true" lang='{now}' id="table_{now}" name="table[{now}]">
+											<option value="0">请选择</option>
+												<!-- $table AS $k=>$v -->
+												<option {run: echo $_SESSION['table'][$now]['a']==$v[name]?'selected':''} {run: echo $v[comment]?'data-subtext=" 【'.$v[comment].'】"':''} value="{v[name]}">{v[name]}</option>
+												<!-- END -->
+											</select>
+											
+											
+										</div>
+										<label for="basic" class="control-label col-md-1 col-sm-1 col-xs-12">关联表</label>
+										<div class="col-md-2 col-sm-2 col-xs-12">
+											<select class="selectpicker show-tick form-control tableb" data-live-search="true" lang='{now}' id="tables_{now}" name="tables[{now}]">
+												<option value="0" {run: echo trim($_SESSION['table'][$now]['b'])==''?'selected':''}>请选择</option>
+												<!-- $ltable AS $k=>$v -->
+												<option {run: echo $_SESSION['table'][$now]['b']==$v[name]  && trim($_SESSION['table'][$now]['b'])!=''?'selected':''} {run: echo $v[comment]?'data-subtext=" 【'.$v[comment].'】"':''} value="{v[index]}:{v[name]}">{v[name]}</option>
+												<!-- END -->
+											</select>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								<br>
+								<div class="table_sub sub_{now}" {run: echo $_SESSION['table'][$now]['b']==''?'style="display:none;"':''}>{sub_now}</div>
+								
+							</div>

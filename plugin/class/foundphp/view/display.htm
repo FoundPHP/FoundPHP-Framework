@@ -1,0 +1,136 @@
+
+		<div class="panel-body">
+			<div class="alert alert-warning" role="alert"><h4><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> <b style="font-size:20px;"><lang>错误分析</lang></b></h4>{error_intro}</div>
+			<div class="panel panel-default" style="padding-top:20px;">
+				<div class="col-md-12 col-xs-12 FoundPHP-error-info">
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12 text-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <lang>出错原因</lang></label>
+						<div class="col-md-10 col-sm-10 col-xs-12 text-success">
+							<div style="word-break: break-all;padding:2px;font-size:14px;">{func}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12 col-xs-12 FoundPHP-error-info">
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12 text-primary"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <lang>出错来源</lang></label>
+						<div class="col-md-10 col-sm-10 col-xs-12 text-primary">
+							<div style="word-break: break-all;">{file}</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-xs-12 FoundPHP-error-info">
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12 text-danger"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> <lang>出错行号</lang></label>
+						<div class="col-md-10 col-sm-10 col-xs-12 text-danger">
+							<div style="word-break: break-all;">{line} <lang>行</lang>&nbsp;&nbsp;<span id="mytime"></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-xs-12 FoundPHP-error-info">
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" style="color:#bfbfbf"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <lang>系统信息</lang></label>
+						<div class="col-md-10 col-sm-10 col-xs-12" style="color:#bfbfbf">
+							<div style="width: 100%;height:110px;overflow-y: auto;word-break: break-all;padding:2px;font-size:14px;">{run:echo php_uname('s')} , {_SERVER['SERVER_SOFTWARE']}<br>PHP:{run:echo $php = PHP_VERSION;$phpver = intval($php)} , IP:{run:echo get_ip()} , TIME:{run:echo dates(time())}
+						<br>{run:echo get_url()}
+						<br>{run:echo __DIR__}
+						<br>{run:echo getcwd()}</div>
+						</div>
+					</div>
+				</div>				
+				
+				
+				<!-- DEL -->
+				<table class="table" style="width:100%;">
+					<thead>
+					<tr>
+						<th class="col-sm-2"><lang>描述</lang></th>
+						<th class="text-dark"><lang>详情</lang></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th class="text-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <lang>出错原因</lang></th>
+						<td class="text-success"><div style="width: 100%;height:150px;overflow-y: auto;word-break: break-all;padding:2px;font-size:14px;">{func}</div></td>
+					</tr>
+					<tr>
+						<th class="text-primary"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> <lang>出错来源</lang></th>
+						<td class="text-primary"><div style="width: 100%;word-break: break-all;font-size:12px;padding-top:4px;">{file}</div></td>
+					</tr>
+					<tr>
+						<th class="text-danger"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> <lang>出错行号</lang></th>
+						<td class="text-danger" style="font-size:12px;padding-top:12px;">{line} <lang>行</lang></td>
+					</tr>
+					<tr>
+						<th style="color:#bfbfbf"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <lang>系统信息</lang></th>
+						<td style="color:#bfbfbf"style="width: 100%;word-break: break-all;"><div style="width: 100%;height:150px;overflow-y: auto;word-break: break-all;padding:2px;font-size:14px;">{run:echo php_uname('s')} , {_SERVER['SERVER_SOFTWARE']}<br>PHP:{run:echo $php = PHP_VERSION;$phpver = intval($php)} , IP:{run:echo get_ip()} , TIME:{run:echo dates(time())}
+						<br>{run:echo get_url()}
+						<br>{run:echo __DIR__}
+						<br>{run:echo getcwd()}</div></td>
+					</tr>
+					</tbody>
+				</table>
+					<!-- END -->
+				<div class="clearfix"></div>
+			</div>
+			
+			<button type="button" class="btn btn-default" onclick="history.go(-1);"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> <lang>后退</lang></button>
+			<button type="button" class="btn btn-info" onclick="window.location.reload()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <lang>刷新</lang></button>
+			<!-- IF(isset($source)) -->
+			<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> <lang>源头追溯</lang></button> 
+			<br><br>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> <lang>推荐源</lang></div>
+				<div class="panel-body">
+					<ol class="breadcrumb">
+						<li><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> <lang>源</lang>: <a href="#">Foundphp</a></li>
+						<li><a href="#">Class</a></li>
+						<li><a href="#">EaseTemplate</a></li>
+						<li class="active">set_file（）</li>
+						<li class="pull-right">应用 | 说明</li>
+					</ol>
+
+					<ol class="breadcrumb">
+						<li><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> <lang>源</lang>: <a href="#">Foundphp</a></li>
+						<li><a href="#">Class</a></li>
+						<li class="active">set_file（）</li>
+						<li class="pull-right">应用</li>
+						<li class="pull-right">
+						说明</li>
+					</ol>
+
+					<ol class="breadcrumb">
+						<li><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> <lang>源</lang>: <a href="#">Thinkphp</a></li>
+						<li><a href="#">TPL</a></li>
+						<li class="active">set_file（）</li>
+						<li class="pull-right">应用 | 说明</li>
+					</ol>
+
+				</div>
+			</div>
+			<!-- END -->
+			
+		<div class="FoundPHP-error-footer">
+		<a href="https://Foundphp.com" target="_blank">FoundPHP Framework</a> ©2005-{run:echo date('Y')} Support <span {run:echo $phpver==5?'style="color:blue"':''}>PHP5</span>, <span {run:echo $phpver==7?'style="color:blue"':''}>PHP7</span>, <span {run:echo $phpver==8?'style="color:blue"':''}>PHP8</span>
+		</div>
+		</div>
+	</div>
+	
+<script>
+	function time_fun() {
+		var sec=0;
+		setInterval(function () {
+			sec++;
+			var date = new Date(0, 0)
+			date.setSeconds(sec);
+			var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
+			document.getElementById("mytime").innerText = '(<lang>您已经思考</lang>'+(h?h+"<lang>小时</lang>":'') + (m?m+"<lang>分</lang>":'')+ (s>0?s+"<lang>秒</lang>":'')+')';
+		}, 1000);
+	}
+	time_fun();
+</script>
+
+</div>
+</body> 
+</html>

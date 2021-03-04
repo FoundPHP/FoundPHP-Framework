@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{header_title}</title>
+	<link rel="icon" href="data/style/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="data/style/favicon.ico" type="image/x-icon" />
+	
+	<!-- Bootstrap -->
+	<link href="data/style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script>
+		var style_dir	= '{style_dir}';
+	</script>
+	<!-- jQuery -->
+	<script src="data/style/js/global.js"></script>
+<style>
+	.div_position{
+		top:20px;
+		left:0px;
+		position:absolute;
+		z-index:9999999!important;
+	}
+	.bg{
+		top:0px!important;
+		left:0px!important;
+		position:fixed !important;
+		width:100%;
+		height:100%;
+		background: rgba(0,0,0,0.6);
+		z-index:9999998!important;
+	}
+	.panel-default table{
+		font-size:14px;
+	}
+	.alert{
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ebd66a;
+		border-radius: 4px;
+		border-radius: 15px;
+	}
+	.FoundPHP-error-footer{
+		margin-top:15px;
+		padding-top:15px;
+		border-top:1px dashed #dedede;
+		text-align: right;
+		font-size:12px;
+	}
+	.FoundPHP-error-info{
+		margin-bottom:15px;
+	}
+	.panel-danger {
+		border-color: #dedede;
+	}
+	.panel-danger>.panel-heading {
+		color: #ffffff;
+		background-color: #00c8fb;
+		border-color: #0082fc;
+		border-radius: 15px 15px 0px 0px;
+		padding:0px 0px 0px 10px;
+	}
+	.panel {
+		border-radius: 15px;
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#999999,direction=120,strength=4);
+		-moz-box-shadow: 2px 2px 15px #999999;-webkit-box-shadow: 2px 2px 15px #999999;box-shadow:2px 2px 15px #999999;
+	}
+</style>
+</head>
+<body> 
+<div class="bg"></div>
+<div class="col-sm-8 col-sm-offset-2 col-xs-12 div_position">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<img src="data/style/logo_mini.jpg">
+			<h3 class="panel-title pull-right hidden-xs" style="padding:18px;"><b><lang>FoundPHP FrameWork Debug</lang></b></h3>
+			<h3 class="panel-title pull-right visible-xs-block" style="padding-top:18px;padding-right:10px;"><b><lang>FoundPHP Debug</lang></b></h3>
+		</div>

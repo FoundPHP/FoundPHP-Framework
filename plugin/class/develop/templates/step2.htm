@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>FoundPHP Framework - <lang>开发工具</lang></title>
+
+    <!-- Bootstrap -->
+    <link href="data/style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="data/style/css/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="data/style/css/bootstrap-select/bootstrap-select.css">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        
+
+        
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>FoundPHP Framework - <lang>开发工具</lang></h3>
+              </div>
+
+              
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+            <form method="POST" class="form-horizontal form-label-left " action="{post_url}" onkeydown="if(event.keyCode==13)return false;">
+            <input name="o" value="1" type="hidden">
+            <input name="id" id="id" value="{now}" type="hidden">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><lang>自动化工具</lang></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <!-- Smart Wizard -->
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                    
+                      <ul class="wizard_steps">
+                      	<!-- $result[step] AS $k=>$v -->
+                      	<!-- IF($v[s]==1) -->
+                      	{run:$sel_t = $k-1;}
+                      	<!-- END -->
+                      	<li><a href="{run:echo $v[s]>0?str_replace('t='.$t,'t='.$k,$page_url):'#';}" class="{run:echo $FoundPHP->step_icon($v[s]);}">
+                      		<span class="step_no">{k}</span><span class="step_descr"><b>{v[n]}</b><br /><small>{v[d]}</small></span>
+                      	</a></li>
+                      	<!-- END -->
+                      </ul>
+                      
+                      
+                      <div id="step">
+                      
+							<div class="form-group">
+							  <label for="basic" class="control-label col-md-3 col-sm-3 col-xs-12"><lang>主表</lang> a</label>
+							  <div class="col-md-6 col-sm-6 col-xs-12">
+								<select  class="selectpicker show-tick form-control" data-live-search="true" id="table_a" name="table[a]">
+								  <option value=''><lang>选择数据库</lang></option>
+								  <!-- $table AS $k=>$v -->
+								  <option {run:echo ($_SESSION['ltable']['table']==$v[name]?'selected':'')} {run: echo $v[comment]?'data-subtext=" 【'.$v[comment].'】'.($v[nums]?' ('.$v[nums].lang('条').')':'').'"':''} value="{v[name]}">{v[name]}</option>
+								  <!-- END -->
+								 
+								</select>
+							  </div>
+							</div>
+                      		
+							<div class="form-group tabset" {run:echo $_SESSION['ltable']['table']?'':"style='display:none;'"}>
+								<label for="basic" class="control-label col-md-offset-2 col-sm-offset-2 col-md-1 col-sm-1 col-xs-12"><lang>索引id</lang></label>
+								<div class="col-md-2 col-sm-2 col-xs-12">
+									<input type="text" class="form-control" name="t_index" id="t_index" value="{run:echo $_SESSION['ltable']['t_index']?$_SESSION['ltable']['t_index']:'ASC'}" onkeyup="openFlag()" onkeydown="closeFlag()">
+							  	</div>
+								<label for="basic" class="control-label  col-md-1 col-sm-1 col-xs-12"><lang>显示字段</lang></label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<input type="text" class="form-control" name="t_field" id="t_field" value="{run:echo $_SESSION['ltable']['t_field']?$_SESSION['ltable']['t_field']:'*'}" onkeyup="openFlag()" onkeydown="closeFlag()">
+								</div>
+							</div>
+                      		
+							<div class="form-group tabset" {run:echo $_SESSION['ltable']['table']?'':"style='display:none;'"}>
+								<label for="basic" class="control-label col-md-offset-2 col-sm-offset-2 col-md-1 col-sm-1 col-xs-12"><lang>查询条件</lang></label>
+								<div class="col-md-2 col-sm-2 col-xs-12">
+									<input type="text" class="form-control" name="t_where" id="t_where" value="{run:echo $_SESSION['ltable']['t_where']?$_SESSION['ltable']['t_where']:''}" onkeyup="openFlag()" onkeydown="closeFlag()">
+								</div>
+								<label for="basic" class="control-label col-md-1 col-sm-1 col-xs-12"><lang>排序条件</lang></label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<input type="text" class="form-control" name="t_order" id="t_order" value="{run:echo $_SESSION['ltable']['t_order']?$_SESSION['ltable']['t_order']:'ASC'}" onkeyup="openFlag()" onkeydown="closeFlag()">
+								</div>
+							</div>
+							<div class="form-group tabset" {run:echo $_SESSION['ltable']['table']?'':"style='display:none;'"}>
+							  <label for="basic" class="control-label col-md-3 col-sm-3 col-xs-12"><lang>where 帮助</lang></label>
+							  <div class="col-md-6 col-sm-6 col-xs-12">
+									<b>查询条件 where</b> 默认支持自定义参数，定义变量或方法的时候需要在前后定义单引号包围，使用单引号让变量或方法生效。<br>
+									<b>例如时间查询:</b> dateline<='.time().'<br>
+									<b>例如变量查询:</b> types<='.$a.'<br>
+									
+							  </div>
+							</div>
+							<div class="form-group preview" style='display:none;'>
+							</div>
+							
+							<div class="form-group tabset" {run:echo $_SESSION['ltable']['table']?'':"style='display:none;'"}>
+							  <label for="basic" class="control-label col-md-3 col-sm-3 col-xs-12"><lang>查询语句</lang></label>
+							  <div class="col-md-6 col-sm-6 col-xs-12">
+									<textarea class="form-control" rows="3" name="sql" ID="sql" cols="20">{run:echo $_SESSION['ltable']['sql']?$_SESSION['ltable']['sql']:''}</textarea>
+							  </div>
+							</div>
+							<div class="form-group preview" style='display:none;'>
+							</div>
+							
+						{tablelist}
+                      </div>
+                      
+				<div class="form-group">
+					<label for="basic" class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+					<a class="btn btn-primary btn-add"><lang>新增表 +</lang></a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-danger btn-del"><lang>删除末表 -</lang></a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-success btn-view"><lang>预览数据 0.0</lang></a>
+					</div>
+				</div>
+                    </div>
+                    <!-- End SmartWizard Content -->
+					
+					
+                    <div class="actionBar">
+					<!-- IF($result[step][1][s]!=1) -->
+					<button type="button" class="buttonNext btn btn-success" onclick="location='{run:echo str_replace($t,$t-1,$page_url)}';">上一步</button>
+					<!-- END -->
+					<button type="submit" class="buttonPrevious  btn btn-primary">下一步</button></div>
+                    <!-- End SmartWizard Content -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+          
+		<div class="pull-right">
+			PHP by <a href="http://FoundPHP.com" target="_blank">FoundPHP</a>, Template by <a href="http://et.systn.com" target="_blank">ET</a>
+		</div>
+        </div>
+        <!-- /page content -->
+		
+       
+      </div>
+    </div>
+	
+	<!-- jQuery -->
+	<script src="data/style/js/jquery.1.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="data/style/bootstrap/js/bootstrap.min.js"></script>
+	<script src="data/style/js/bootstrap-select/bootstrap-select.js"></script>
+	<script>
+	var flag = 0;
+	var t;
+	function openFlag () {
+	  t = setTimeout(function(){flag = 1; dosomething();}, 1000);
+	}
+	function closeFlag() {
+	  clearTimeout(t);
+	  flag = 0;
+	}
+	function dosomething() {
+	  if (flag) {
+	    // do something
+	    sql('tablea',$('#table_a').val());
+	  }
+	}
+	
+	function sql(todo,now,ljoin){
+			$.ajax({
+				type: "POST",
+				url: "{run:echo str_replace('t='.$t,'',$page_url)}&t="+todo+(todo=='field'?'&o='+ljoin:'')+"&token={run:echo session_id()}",
+				dataType:"html",
+				data: {
+					now		: now,
+					t_index	: $('#t_index').val(),
+					t_field	: $('#t_field').val(),
+					t_where : $('#t_where').val(),
+					t_order : $('#t_order').val(),
+					ljoin	: ljoin
+				},
+				cache: false,
+				success: function(data) {
+					var obj = eval("("+data+")");
+					//console.log(todo);
+						switch(todo){
+							case'table':
+								console.log(obj.html);
+								if (obj.now){
+									//插入
+									$('#step').append(obj.html);
+									/*修复append后的下拉搜索*/
+									$('.selectpicker').data('selectpicker', null);
+									$('.bootstrap-select').css("display","none");
+									$('.selectpicker').selectpicker();
+								}else{
+									alert('<lang>已达到添加上限</lang>');
+								}
+							
+							break;
+							
+							case'tabled':
+								$('.t'+now).remove();
+							break;
+							
+							case'field':
+							//	console.log('.sub_'+type);
+								$('.sub_'+type).html(obj.html);
+								if (obj.show==1){
+									$('.sub_'+type).show();
+								}else{
+									$('.sub_'+type).hide();
+								}
+							break;
+							
+							case'fieldset':
+								$('#ljoin_'+now).val(obj.ljoin);
+								$('.sub_'+now).html(obj.html);
+								$('.sub_'+now).show();
+							break;
+						}
+						
+						
+						if (obj.t_index){
+							$('#t_index').val(obj.t_index);
+						}
+						if (obj.t_order){
+							$('#t_order').val(obj.t_order);
+						}
+						if (obj.sql){
+							$('#sql').val(obj.sql);
+						}
+						//插入
+						if (obj.now){
+							$('#id').val(obj.now);
+						}
+						
+						$('.tabset').show();
+						
+				}
+			});
+	}
+	
+	
+	
+		$(function(){
+		
+		//添加表
+		$(document).on("click",'.btn-add',function(){
+			
+			if ($("#table_a").val()==0){
+				alert('抱歉，主表a还未选择');
+				return false;
+			}
+			sql('table',$('#id').val());
+			return false;
+		});
+		
+		$(document).on("click",'.btn-del',function(){
+			if ($('#id').val()=='a'){
+				alert('抱歉，主表不能删除');
+				return false;
+			}
+			sql('tabled',$('#id').val());
+			return false;
+		});		
+		
+		//主表选择
+			$('#table_a').change(function(){
+				if($(this).val()==0){
+					$('.tabset').hide();
+				}else{
+					sql('tablea',$(this).val());
+				}
+			})
+		
+			//数据库表选择
+			$(document).on("click",'.tablea',function(){
+			/*修复append后的下拉搜索*/
+				ta		= $(this).parents('.table').find('.tablea').selectpicker('val');
+				tb		= $(this).parents('.table').find('.tableb').selectpicker('val');
+				type	= $(this).parents('.table').find('.tablea').attr('lang');
+				if (type && ta!=0){
+					//table_field(type,ta,tb);
+					sql('field',type,ta+":"+tb);
+				}
+			});
+			$(document).on("click",'.sa',function(){
+			/*修复append后的下拉搜索*/
+				sa		= $(this).val();
+				setnow	= $(this).attr('lang');
+				sb		= $(".ljoinb_"+setnow).val();
+				sb_index= $("#tables_"+setnow).val();
+				sb_dot	= sb_index.split(":", 1);
+				
+				if (sa!=null && sb!=null){
+					result	= setnow+'.'+sa +'='+sb_dot+'.'+ sb;
+					
+					sql('fieldset',setnow,result)
+				}
+				
+			});
+			
+			
+			//选择关联
+			$(document).on("click",'.tableb',function(){
+			/*修复append后的下拉搜索*/
+				ta		= $(this).parents('.table').find('.tablea').selectpicker('val');
+				tb		= $(this).parents('.table').find('.tableb').selectpicker('val');
+				type	= $(this).parents('.table').find('.tablea').attr('lang');
+				if (type && ta!=0){
+					sql('field',type,ta+":"+tb);
+				}
+			});
+			
+			$(document).on("click",'.sb',function(){
+			/*修复append后的下拉搜索*/
+				sb		= $(this).val();
+				setnow	= $(this).attr('lang');
+				sa		= $(".ljoina_"+setnow).val();
+				sb_index= $("#tables_"+setnow).val();
+				sb_dot	= sb_index.split(":", 1);
+				
+				if (sa!=null && sb!=null){
+					result	= setnow+'.'+sa +'='+sb_dot+'.'+ sb;
+					sql('fieldset',setnow,result)
+				}
+				
+			});
+			
+			$(document).on("click",'.btn-view',function(){
+				alert(1);
+			});
+			
+		
+		})
+	</script>
+
+  </body>
+</html>
