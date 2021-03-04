@@ -12,7 +12,7 @@ FoundPHP从诞生以来一直奉行兼容原生、多平台兼容、语法简洁
 
 
 ### FoundPHP 省事
-FoundPHP核心部件采用**Ease Template**与**DataBase Object**，为框架打下了最易用的基础，同时也可以保证框架可以稳定的运行在**>=PHP5.4/PHP7.X/PHP8.0**之间任意版本。升级PHP版本完全不需要担心model的过期或view的不兼容。
+FoundPHP核心部件采用**Ease Template**与**DataBase Object**，为框架打下了最易用的基础，同时也可以保证框架可以稳定的运行在**PHP5/PHP7/PHP8**之间任意版本。升级PHP版本完全不需要担心model的过期或view的不兼容。
 
 ------------
 
