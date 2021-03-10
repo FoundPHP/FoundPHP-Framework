@@ -716,8 +716,6 @@ a {
 	margin-left: 0!important
 }
 .nav.side-menu>li.active>a {
-	font-weight:bold;
-	color:#fff;
 	text-shadow: rgba(0,0,0,.25) 0 -1px 0;
 	background: linear-gradient(#334556,#2C4257),#2A3F54;
 	box-shadow: rgba(0,0,0,.25) 0 1px 0,inset rgba(255,255,255,.16) 0 1px 0
@@ -2179,7 +2177,7 @@ a.btn-danger,a.btn-primary,a.btn-success,a.btn-warning {
 	background: #169F85
 }
 .btn-dark {
-	color: #FFF!important;
+	color: #E9EDEF;
 	background-color: #4B5F71;
 	border-color: #364B5F
 }
@@ -2303,7 +2301,7 @@ textarea:focus {
 	width: 300px;
 	overflow-y: auto
 }
-span.tag {
+/* span.tag {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	display: block;
@@ -2318,7 +2316,7 @@ span.tag {
 }
 span.tag a {
 	color: #F1F6F7!important
-}
+} */
 .tagsinput span.tag a {
 	font-weight: 700;
 	color: #82ad2b;
@@ -2437,7 +2435,7 @@ ul.timeline li {
 	white-space: nowrap;
 	text-overflow: ellipsis
 }
-.tag {
+/* .tag {
 	line-height: 1;
 	background: #1ABB9C;
 	color: #fff!important
@@ -2455,7 +2453,7 @@ ul.timeline li {
 	border-bottom: 14px solid transparent;
 	border-left: 11px solid #1ABB9C;
 	display: none;
-}
+} */
 .timeline h2.title {
 	position: relative;
 	font-size: 16px;
