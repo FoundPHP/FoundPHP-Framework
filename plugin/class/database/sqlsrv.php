@@ -66,7 +66,14 @@ Class Dirver_sqlsrv{
 		$insert_id	= (int)@current($this->fetch_array($query['query']));
 		return $insert_id;
 	}
-	
+	//创建数据库
+	function create_db($dbname){
+		sqlsrv_query($this->LinkID,"CREATE DATABASE ".$dbname);
+	}
+	//列出数据库
+	function show_db(){
+		sqlsrv_query($this->LinkID,"SELECT  * FROM sysdatabases");
+	}
 	//关闭当前数据库连接
 	function close(){
 		return @sqlsrv_close($this->LinkID);

@@ -14,8 +14,8 @@
 */
 
 Class Dirver_sqlite3{
-	var $Lists	= '';
-	var $nums	= 0;
+	var $Lists		= '';
+	var $nums		= 0;
 	//连接数据库
 	function DBLink($dba=''){
 		$this->LinkID = new SQLite3($dba['dbhost'].$dba['dbname']);
@@ -37,7 +37,7 @@ Class Dirver_sqlite3{
 		if(stristr($query,'select ')){
 			$db_query	= $this->LinkID->query($query);
 		}else{
-			$db_query	= $this->LinkID->exec($query);
+			$db_query	= @$this->LinkID->exec($query);
 		}
 		return array('query'=>$db_query,'sql'=>$query);
 	}
@@ -63,7 +63,85 @@ Class Dirver_sqlite3{
 	function insert_id(){
 		return $this->LinkID->lastInsertRowID();
 	}
+	//创建数据库
+	function create_db($dbname){
+		$this->LinkID->query("CREATE DATABASE ".$dbname);
+	}
+	//创建数据库表
+	function create_table($set=array(),$ary=array()){
+		//数组符合要求
+		foreach($ary AS $k=>$v){
+			$sql 	= '';
+			if(count($v)==10){
+				//拼接语句
+				if($v['types'] == 'INT'){
+					$v['types']	= 'INTEGER';
+				}
+				$sql .= "`$v[field]` $v[types] ";
+				if($v['length']>0 && empty($v['key_index'])){
+					$sql .= "($v[length])";//长度
+				}
+				
+				if($v['null']>0){	//是否定义空
+					$sql .= " NULL ";
+				}else{
+					$sql .= " NOT NULL ";
+				}
+				
+				//主键
+				if($v['key_index']){
+					
+					$sql .= $v['key_index']." KEY  ";
+				}
+				if($v['extra']>0){	//是否定义空
+					$sql .= " AUTOINCREMENT ";
+				}
+				
+				$sql_ary[]	= $sql;
+			}
+		}
+		$query 	= "CREATE TABLE IF NOT EXISTS `".$set['table']."` (";
+		$query	.= implode(',',$sql_ary);
+		$query 	.= ");";
+		$this->LinkID->query($query);
+	}
+	//列出数据库 sqlite 不支持
+	function show_db(){
+		return array('');
+	}
+	//列出数据表字段
+	function show_field($table){
+		$query 		= $this->LinkID->query("PRAGMA table_info([$table])");
+		while($dls 	= $this->fetch_array($query)){
+				$result[] 	= array(
+					'field'			=> $dls['name'],
+					'type'			=> $dls['type'],
+					'collation'		=> '',
+					'null'			=> $dls['notnull']==1?'NO':'YES',
+					'key'			=> $dls['pk']==1?'PRIMARY':'',
+					'default'		=> $dls['dflt_value'],
+					'extra'			=> $dls['pk'],
+					'comment'		=> '',
+				);
+		} 
+		return $result;
+	}
 	
+	//列出数据库表
+	function show_table(){
+		$query =  $this->LinkID->query("select name,upper(name) from SQLITE_MASTER where type = 'table' order by 2");
+		while($dls = $this->fetch_array($query)){
+			if(!strstr($dls['name'],'sqlite_sequence')){
+				$result[]	= array(
+					'name'			=> $dls['name'],
+					'rows'			=> '0',
+					'data_length'	=> '0',
+					'index_length'	=> '0',
+				);
+			}
+		}
+		return $result;
+	}
 	//关闭当前数据库连接
 	function close(){
 		return $this->LinkID->close();

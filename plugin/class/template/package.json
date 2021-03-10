@@ -1,0 +1,31 @@
+{
+  "name": "Ease Template",
+  "title": "Ease Template",
+  "description": "支持PHP5/PHP7/PHP8所有版本的模板引擎，可以快速简单的实现代码分离，支持编译与缓存，支持多语言并且提供文件读取写入。",
+  "version": "ET.210120",
+  "homepage": "http://et.foundphp.com",
+  "author": {
+    "name": "孟大川",
+    "url": "http://www.systn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FoundPHP/Ease-Template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FoundPHP/Ease-Template/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "grunt build",
+    "test": "grunt default"
+  },
+  "main": "ease_template7.php",
+  "keywords": [
+    "FoundPHP",
+    "Template",
+    "php",
+    "cache",
+    "replace"
+  ]
+}

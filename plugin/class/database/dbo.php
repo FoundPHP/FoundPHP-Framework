@@ -4,9 +4,9 @@
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com
 *	 author: 孟大川
-*	version: v3.210204
+*	version: v3.210306
 *	  start: 2006-05-24
-*	 update: 2021-02-04
+*	 update: 2021-03-06
 *	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
 *	此软件为授权使用软件，请参考软件协议。
@@ -76,14 +76,14 @@ class FoundPHP_dbo{
 			case'mysql':
 			case'mysqli':
 				$this->db_name	= 'MYSQL';
-				if ($this->dbtype=='mysql' && !function_exists($this->dbtype)){
+				
+				if (function_exists('mysqli')){
 					$this->dbtype .= 'i';
+					$func_name 		= $this->dbtype;
+				}else{
+					$this->dbtype	= 'mysql';
+					$func_name 		= $this->dbtype.'_connect';
 				}
-				//过低的版本只能够使用mysql
-				if (floatval(PHP_VERSION)<=5.3){
-				$this->dbtype	= $this->dbtype	= 'mysql';
-				}
-				$func_name 		= $this->dbtype.'_connect';
 			break;
 			case'mariadb':
 				$this->db_name	= 'MariaDB';
@@ -185,6 +185,42 @@ class FoundPHP_dbo{
 	function nums($query) {
 		return $this->num_rows($this->query($query));
 	}
+	/**
+	* 创建数据库
+	*/
+	function create_db($db_name){
+		$this->DB->create_db($db_name);
+	}
+	/**
+	* 创建表
+	* set 表名、注释
+	* ary 字段信息
+	*/
+	function create_table($set=array(),$ary=array()){
+		return $this->DB->create_table($set,$ary);
+	}
+	
+	/**
+	* 查询全部数据库
+	*/
+	function show_db(){
+		return $this->DB->show_db($db_name);
+	}
+	
+	/**
+	* 查询数据库全部表
+	*/
+	function show_table(){
+		return $this->DB->show_table();
+	}
+	
+	/**
+	* 查询数据表字段
+	*/
+	function show_field($table){
+		return $this->DB->show_field($table);
+	}
+	
 	
 	/**
 	*  一个查询字符串

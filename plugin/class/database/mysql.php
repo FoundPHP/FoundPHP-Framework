@@ -60,7 +60,93 @@ Class Dirver_mysql{
 	function insert_id(){
 		return @mysql_insert_id($this->LinkID);
 	}
-	
+	//创建数据库表
+	function create_table($set=array(),$ary=array()){
+		//数组符合要求
+		foreach($ary AS $k=>$v){
+			$sql 	= '';
+			if(count($v)==10){
+				//拼接语句
+				$sql .= "`$v[field]` $v[types] ";
+				if($v['length']>0){
+					$sql .= "($v[length])";//长度
+				}
+				if($v['attr']){
+					$sql .= " $v[attr] ";//属性
+				}
+				if($v['null']>0){	//是否定义空
+					$sql .= " NULL ";
+				}else{
+					$sql .= " NOT NULL ";
+				}
+				//默认值
+				if($v['default']!=''){
+					$sql .= " DEFAULT '".$v['default']."'";
+				}
+				//是否自增
+				if($v['extra']==1){
+					$sql .= " AUTO_INCREMENT ";
+				}
+				//字段注释
+				if($v['comment']){
+					$sql .= " COMMENT '$v[comment]'";
+				}
+				//主键
+				if($v['key_index']){
+					
+					$sql_key[] = $v['key_index']." KEY (`$v[field]`)";
+				}
+				
+				$sql_ary[]	= $sql;
+			}
+		}
+		$query 	= "CREATE TABLE IF NOT EXISTS `".$set['table']."` (";
+		$query	.= implode(',',$sql_ary).",";
+		$query	.= implode(' , ',$sql_key);
+		$query 	.= ")ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='".$set['comment']."';";//='管理员组' AUTO_INCREMENT=57 
+		$this->query($query);
+	}
+	//创建数据库
+	function create_db($dbname){
+		$this->query("CREATE DATABASE ".$dbname);
+	}
+	//列出数据库
+	function show_db(){
+		$query 	 = $this->query("SHOW DATABASES ");
+		while($r = $this->fetch_array($query['query'])){
+			$result[] = $r['Database'];
+		}
+		return $result;
+	}
+	//列出数据表字段
+	function show_field($table){
+		$query = $this->query("SHOW  FULL FIELDS FROM `$table`");
+		while($dls = $this->fetch_array($query['query'])){
+				//转为小写
+			foreach($dls AS $k=>$v){
+				$ks = strtolower($k);
+				$dls[$ks] = $v;
+				unset($dls[$k]);
+			}
+			$result[]	= $dls;
+		}
+		return $result;
+	}
+	//列出数据库表
+	function show_table(){
+		$query =  $this->query("SHOW TABLE STATUS");
+			$table_ary	= array();
+		while($dls = $this->fetch_array($query['query'])){
+			//转为小写
+			foreach($dls AS $k=>$v){
+				$ks = strtolower($k);
+				$dls[$ks] = $v;
+				unset($dls[$k]);
+			}
+			$result[]	= $dls;
+		}
+		return $result;
+	}
 	//关闭当前数据库连接
 	function close(){
 		return @mysql_close($this->LinkID);

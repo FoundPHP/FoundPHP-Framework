@@ -70,7 +70,18 @@ Class Dirver_pgsql{
 	function insert_id(){
 		return $this->insert_id;
 	}
-	
+	//创建数据库
+	function create_db($dbname){
+		pg_query($this->LinkID,"CREATE DATABASE ".$dbname);
+	}
+	//列出数据库
+	function show_db(){
+		$query = pg_query($this->LinkID,"SHOW DATABASES ");
+		while($r = $this->fetch_array($query)){
+			$result[] = $r['Database'];
+		}
+		return $result;
+	}
 	//关闭当前数据库连接
 	function close(){
 		return pg_close($this->LinkID);
