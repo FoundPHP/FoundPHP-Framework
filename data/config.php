@@ -70,7 +70,7 @@ $config['set']['site_author']	= '';				//作者信息
 $config['set']['site_key']		= '';					//网站关键词
 $config['set']['site_desc']		= '';				//网站介绍
 
-$config['set']['site_url'] 		= 'http://localhost/dev/000/';	//网站首页
+$config['set']['site_url'] 		= 'http://www.FoundPHP.com/';	//网站首页
 $config['set']['wx_url'] 		= 'http://wx.foundphp.com/';	//微信首页
 
 $config['set']['limit']			= 20;							//默认分页数
