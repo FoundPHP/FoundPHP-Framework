@@ -14,7 +14,7 @@ load('function/category');
 $table['a']		= 'articles';
 $table['b']		= 'article_data';
 if ($t=='edit'){
-$ljoin['b']		= 'b.aid=a.id';
+$ljoin['b']		= 'b.aid=a.aid';
 }
 $table['c']		= "category";
 $ljoin['c']		= 'c.cate_id=a.cate_id';
@@ -23,7 +23,7 @@ $table['d']		= "articles_relation";
 
 $cases			= 'phpcourse';
 
-$t_index		= 'id';						//索引id
+$t_index		= 'aid';						//索引id
 if ($t=='edit'){
 $t_field		= 'a.*,b.*';			//字段
 }else {
@@ -235,7 +235,7 @@ if ( in_array($t,array('add','edit','view'))){
 	}
 	//查询其他文章进行关联
 	if($t=='edit'){
-		$s_where = "a.id!='$id'";
+		$s_where = "a.aid!='$id'";
 	}
 	$sql	= sql_select(array('sql'=>sql_join(),'where'=>$s_where,'type'=>"sql"));
 	$query	= $db->query($sql);
@@ -253,7 +253,7 @@ switch($t){
 		//查询其他文章进行关联
 		$s_where	= " a.titles LIKE '%".$str."%'";
 		if($id>0){
-			$s_where	.= " AND a.id !='$id'";
+			$s_where	.= " AND a.$t_index !='$id'";
 		}
 		$sql	= sql_select(array('sql'=>sql_join(),'where'=>$s_where,'type'=>"sql"));
 		$query	= $db->query($sql);
@@ -372,7 +372,8 @@ switch($t){
 	//编辑
 	case'edit':
 		//查询数据
-		$data_info = sql_select( array('sql'=>sql_join(), 'where'=>"$t_index='$id'" ) );
+		
+		$data_info = sql_select( array('sql'=>sql_join(), 'where'=>"a.$t_index='$id'" ) );
 		if($data_info[$t_index]!= $id || $id<=0){
 			msg($page_msg['url_error']);
 		}
