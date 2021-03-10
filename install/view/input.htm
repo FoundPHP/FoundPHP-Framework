@@ -27,8 +27,8 @@
 			});
 			
 			password	= $('#password').val();
-			if (password.length<=3){
-				sys_error('抱歉，管理员密码不能小于3位',1.5);
+			if (password.length<5){
+				sys_error('抱歉，管理员密码不能小于5位',1.5);
 				$('#password').focus();
 				return false;
 			}

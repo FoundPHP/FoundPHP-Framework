@@ -53,59 +53,6 @@ CREATE TABLE `{[FoundPHP]}admin_user`  (
 
 INSERT INTO `{[FoundPHP]}admin_user` (`id`, `host_id`, `fid`, `son`, `gid`, `username`, `password`, `nickname`, `gender`, `email`, `phone`, `position`, `face`, `states`, `my_power`, `operate`, `last_operate`, `state_date`, `login_num`, `reg_date`, `reg_ip`, `last_date`, `last_ip`) VALUES (1, 0, 0, 0, 1, '{[FoundPHP_us]}', '{[FoundPHP_pw]}', 'FoundPHP 大师', 0, '{[FoundPHP_email]}', '', '超级管理员', '', 1, '', '', '', 0, 0, {[FoundPHP_date]}, '{[FoundPHP_ip]}', {[FoundPHP_date]}, '{[FoundPHP_ip]}');
 
--- ----------------------------
--- Table article_data
--- ----------------------------
-DROP TABLE IF EXISTS `{[FoundPHP]}article_data`;
-CREATE TABLE `{[FoundPHP]}article_data`  (
-  `adid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cate_id` int(10) NULL DEFAULT 0 COMMENT '分类id',
-  `aid` int(10) NULL DEFAULT 0 COMMENT '文章id',
-  `uid` int(10) NULL DEFAULT 0 COMMENT '作者id',
-  `lang` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci  NULL DEFAULT 'zh' COMMENT '文章语言',
-  `cases` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章类型',
-  `subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
-  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '抓取内容',
-  `md_content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Markdown 内容',
-  `cache` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '页面缓存',
-  `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发表作者',
-  `dateline` int(10) NULL DEFAULT 0 COMMENT '发布时间',
-  `page_num` int(5) NULL DEFAULT 0 COMMENT '分页号码',
-  PRIMARY KEY (`adid`) USING BTREE,
-  INDEX `aid`(`cate_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章数据' ROW_FORMAT = Dynamic;
-
-INSERT INTO `{[FoundPHP]}article_data` VALUES (1, 1687, 1, 1, 'phpcourse', 'FoundPHP 为你的梦想加油！', '<h1 id=&quot;h1--foundphp-&quot;><a name=&quot;欢迎来到FoundPHP 开发世界&quot; class=&quot;reference-link&quot;></a><span class=&quot;header-link octicon octicon-link&quot;></span>欢迎来到FoundPHP 开发世界</h1><p>FoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架，用简单的方法为您实现最实用、最稳定的开发平台。</p>\r\n<p>FoundPHP 自带多级系统权限、组织架构、系统管理、调试平台、自动开发、自动完成、AI代码修正、自动升级等功能无需开发，直接使用。</p>\r\n<p>FoundPHP 在线AI自动化写代码、可视化系统开发，设计思维导图即可实现75％的功能代码，降低成本并提高质量，更快速的开发系统的方法。</p>\r\n<p><code>你的作品就是我们最满意的答卷，感谢您加入我们的大家庭。</code></p>\r\n<p>官方网址：<a href=&quot;http://www.foundphp.com&quot;>http://www.foundphp.com</a></p>\r\n<p>开发者：<a href=&quot;http://dev.foundphp.com&quot;>http://dev.foundphp.com</a></p>\r\n<p>FoundPHP Group<br>2021年</p>', '# 欢迎来到FoundPHP 开发世界\r\n\r\nFoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架，用简单的方法为您实现最实用、最稳定的开发平台。\r\n\r\nFoundPHP 自带多级系统权限、组织架构、系统管理、调试平台、自动开发、自动完成、AI代码修正、自动升级等功能无需开发，直接使用。\r\n\r\nFoundPHP 在线AI自动化写代码、可视化系统开发，设计思维导图即可实现75％的功能代码，降低成本并提高质量，更快速的开发系统的方法。\r\n\r\n`你的作品就是我们最满意的答卷，感谢您加入我们的大家庭。`\r\n\r\n官方网址：http://www.foundphp.com\r\n\r\n开发者：http://dev.foundphp.com\r\n\r\nFoundPHP Group\r\n2021年', NULL, 'Admin', 1612411395, 0);
-
--- ----------------------------
--- Table article_vote
--- ----------------------------
-DROP TABLE IF EXISTS `{[FoundPHP]}article_vote`;
-CREATE TABLE `{[FoundPHP]}article_vote`  (
-  `avid` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL DEFAULT 0 COMMENT '发布用户id',
-  `aid` int(11) NOT NULL DEFAULT 0 COMMENT '文章id',
-  `vote_type` int(11) NOT NULL DEFAULT 0 COMMENT '0单选，1多选',
-  `vote_name` int(11) NOT NULL DEFAULT 0 COMMENT '投票名称',
-  `vote_color` int(11) NOT NULL DEFAULT 0 COMMENT '投票名颜色',
-  `vote_num` int(11) NOT NULL DEFAULT 0 COMMENT '已投票数量',
-  `dateline` int(11) NOT NULL DEFAULT 0 COMMENT '建立时间',
-  PRIMARY KEY (`avid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章投票条目' ROW_FORMAT = Fixed;
-
--- ----------------------------
--- Table article_vote_logs
--- ----------------------------
-DROP TABLE IF EXISTS `{[FoundPHP]}article_vote_logs`;
-CREATE TABLE `{[FoundPHP]}article_vote_logs`  (
-  `avlid` int(11) NOT NULL AUTO_INCREMENT,
-  `aid` int(11) NOT NULL DEFAULT 0 COMMENT '文章id',
-  `avid` int(11) NOT NULL DEFAULT 0 COMMENT '投票id',
-  `uid` int(11) NOT NULL DEFAULT 0 COMMENT '投票用户id',
-  `dateline` int(11) NOT NULL DEFAULT 0 COMMENT '记录时间',
-  `ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
-  PRIMARY KEY (`avlid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '投票记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table articles
@@ -137,7 +84,62 @@ CREATE TABLE `{[FoundPHP]}articles`  (
   INDEX `cate_id`(`cate_id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章主表' ROW_FORMAT = Dynamic;
 
-INSERT INTO `{[FoundPHP]}articles` VALUES (1, 1, 1687, NULL, '欢迎来到FoundPHP 开发世界', NULL, 'FoundPHP 框架是非常优秀的PHP开发框架', '', 'FoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架。', '', '', '', 'http://www.foundphp.com', 'Admin', '', 'phpcourse', 1612411395, 1612411515, 0, 1);
+INSERT INTO `{[FoundPHP]}articles` VALUES (1, 1, 1687, NULL, 'zh', '欢迎来到FoundPHP 开发世界', NULL, 'FoundPHP 框架是非常优秀的PHP开发框架', '', 'FoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架。', '', '', '', 'http://www.foundphp.com', 'Admin', '', 'phpcourse', 1612411395, 1612411515, 0, 1);
+
+-- ----------------------------
+-- Table article_data
+-- ----------------------------
+DROP TABLE IF EXISTS `{[FoundPHP]}article_data`;
+CREATE TABLE `{[FoundPHP]}article_data`  (
+  `adid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cate_id` int(10) NULL DEFAULT 0 COMMENT '分类id',
+  `aid` int(10) NULL DEFAULT 0 COMMENT '文章id',
+  `uid` int(10) NULL DEFAULT 0 COMMENT '作者id',
+  `lang` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci  NULL DEFAULT 'zh' COMMENT '文章语言',
+  `cases` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章类型',
+  `subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
+  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '抓取内容',
+  `md_content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Markdown 内容',
+  `cache` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '页面缓存',
+  `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发表作者',
+  `dateline` int(10) NULL DEFAULT 0 COMMENT '发布时间',
+  `page_num` int(5) NULL DEFAULT 0 COMMENT '分页号码',
+  PRIMARY KEY (`adid`) USING BTREE,
+  INDEX `aid`(`cate_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章数据' ROW_FORMAT = Dynamic;
+
+INSERT INTO `{[FoundPHP]}article_data` VALUES (1, 1687, 1, 1,'zh', 'phpcourse', 'FoundPHP 为你的梦想加油！', '<h1 id=&quot;h1--foundphp-&quot;><a name=&quot;欢迎来到FoundPHP 开发世界&quot; class=&quot;reference-link&quot;></a><span class=&quot;header-link octicon octicon-link&quot;></span>欢迎来到FoundPHP 开发世界</h1><p>FoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架，用简单的方法为您实现最实用、最稳定的开发平台。</p>\r\n<p>FoundPHP 自带多级系统权限、组织架构、系统管理、调试平台、自动开发、自动完成、AI代码修正、自动升级等功能无需开发，直接使用。</p>\r\n<p>FoundPHP 在线AI自动化写代码、可视化系统开发，设计思维导图即可实现75％的功能代码，降低成本并提高质量，更快速的开发系统的方法。</p>\r\n<p><code>你的作品就是我们最满意的答卷，感谢您加入我们的大家庭。</code></p>\r\n<p>官方网址：<a href=&quot;http://www.foundphp.com&quot;>http://www.foundphp.com</a></p>\r\n<p>开发者：<a href=&quot;http://dev.foundphp.com&quot;>http://dev.foundphp.com</a></p>\r\n<p>FoundPHP Group<br>2021年</p>', '# 欢迎来到FoundPHP 开发世界\r\n\r\nFoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架，用简单的方法为您实现最实用、最稳定的开发平台。\r\n\r\nFoundPHP 自带多级系统权限、组织架构、系统管理、调试平台、自动开发、自动完成、AI代码修正、自动升级等功能无需开发，直接使用。\r\n\r\nFoundPHP 在线AI自动化写代码、可视化系统开发，设计思维导图即可实现75％的功能代码，降低成本并提高质量，更快速的开发系统的方法。\r\n\r\n`你的作品就是我们最满意的答卷，感谢您加入我们的大家庭。`\r\n\r\n官方网址：http://www.foundphp.com\r\n\r\n开发者：http://dev.foundphp.com\r\n\r\nFoundPHP Group\r\n2021年', NULL, 'Admin', 1612411395, 0);
+
+-- ----------------------------
+-- Table article_vote
+-- ----------------------------
+DROP TABLE IF EXISTS `{[FoundPHP]}article_vote`;
+CREATE TABLE `{[FoundPHP]}article_vote`  (
+  `avid` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL DEFAULT 0 COMMENT '发布用户id',
+  `aid` int(11) NOT NULL DEFAULT 0 COMMENT '文章id',
+  `vote_type` int(11) NOT NULL DEFAULT 0 COMMENT '0单选，1多选',
+  `vote_name` int(11) NOT NULL DEFAULT 0 COMMENT '投票名称',
+  `vote_color` int(11) NOT NULL DEFAULT 0 COMMENT '投票名颜色',
+  `vote_num` int(11) NOT NULL DEFAULT 0 COMMENT '已投票数量',
+  `dateline` int(11) NOT NULL DEFAULT 0 COMMENT '建立时间',
+  PRIMARY KEY (`avid`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '文章投票条目' ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table article_vote_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `{[FoundPHP]}article_vote_logs`;
+CREATE TABLE `{[FoundPHP]}article_vote_logs`  (
+  `avlid` int(11) NOT NULL AUTO_INCREMENT,
+  `aid` int(11) NOT NULL DEFAULT 0 COMMENT '文章id',
+  `avid` int(11) NOT NULL DEFAULT 0 COMMENT '投票id',
+  `uid` int(11) NOT NULL DEFAULT 0 COMMENT '投票用户id',
+  `dateline` int(11) NOT NULL DEFAULT 0 COMMENT '记录时间',
+  `ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
+  PRIMARY KEY (`avlid`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '投票记录' ROW_FORMAT = Dynamic;
+
 
 -- ----------------------------
 -- Table articles_likes

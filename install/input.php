@@ -99,14 +99,13 @@ if($P['o']==1){
 		msg('抱歉，账号信息或服务器有限制<br>参考信息：'.$db->DB->LinkID->connect_error);
 	}
 	//建立数据库
-	if (in_array(strtolower($config['db']['type']),array('mysql','mariadb'))){
+	if (in_array(strtolower($config['db']['dbtype']),array('mysql','mariadb'))){
 		$data_info	= sql_select(array('sql'=>"SELECT SCHEMA_NAME AS name FROM information_schema.SCHEMATA where SCHEMA_NAME='".$P['dbname']."';"));
 		if ($data_info['name']!=$P['dbname']){
 			//建立数据库
 			$db->query("CREATE DATABASE ".$P['dbname']);
 		}
 	}
-	
 	msg('','?a=database');
 }
 

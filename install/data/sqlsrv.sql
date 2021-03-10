@@ -255,6 +255,159 @@ INSERT INTO [dbo].[{[FoundPHP]}admin_user] ([id], [host_id], [fid], [son], [gid]
 GO
 
 -- ----------------------------
+-- Table articles
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[{[FoundPHP]}articles]') AND type IN ('U'))
+	DROP TABLE [dbo].[{[FoundPHP]}articles]
+GO
+CREATE TABLE [dbo].[{[FoundPHP]}articles] (
+  [aid] int IDENTITY(1,1) NOT NULL,
+  [uid] int  NOT NULL,
+  [cate_id] int  NOT NULL,
+  [page_id] int  NULL,
+  [lang] nvarchar(10) COLLATE Chinese_PRC_CI_AS NULL,
+  [titles] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [pinyin] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [smarty_title] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [keywords] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [description] nvarchar(max) COLLATE Chinese_PRC_CI_AS  NULL,
+  [result] nvarchar(max) COLLATE Chinese_PRC_CI_AS  NULL,
+  [thumbnail] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [pagekey] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NULL,
+  [pageurl] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [author] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NOT NULL,
+  [editor] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NULL,
+  [cases] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NULL,
+  [date_add] int  NULL,
+  [date_edit] int  NULL,
+  [valid] tinyint  NULL,
+  [views] int  NULL
+)
+GO
+ALTER TABLE [dbo].[{[FoundPHP]}articles] SET (LOCK_ESCALATION = TABLE)
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'作者id',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'uid'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'分类id',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'cate_id'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章分页id',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'page_id'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'标题',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'titles'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'对应文章的拼音标题',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'pinyin'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'智能系统分析的标题',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'smarty_title'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'关键字',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'keywords'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'页面介绍',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'description'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'结果注释说明',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'result'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章缩略图',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'thumbnail'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章地址关键词',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'pagekey'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章链接',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'pageurl'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章作者',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'author'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'编辑作者',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'editor'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章类型',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'cases'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'添加日期',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'date_add'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'编辑日期',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'date_edit'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'设置文章是否有效，0等待审核，1审核成功，-1审核失败',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'valid'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'查看次数',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles',
+'COLUMN', N'views'
+GO
+EXEC sp_addextendedproperty
+'MS_Description', N'文章主表',
+'SCHEMA', N'dbo',
+'TABLE', N'{[FoundPHP]}articles'
+GO
+INSERT INTO [dbo].[{[FoundPHP]}articles] ([aid], [uid], [cate_id], [page_id], [titles], [pinyin], [smarty_title], [keywords], [description], [result], [thumbnail], [pagekey], [pageurl], [author], [editor], [cases], [date_add], [date_edit], [valid], [views]) VALUES (N'1', N'1', N'1687', NULL, N'欢迎来到FoundPHP 开发世界', NULL, N'FoundPHP 框架是非常优秀的PHP开发框架', N'', N'FoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架。', N'', N'', N'', N'http://www.foundphp.com', N'Admin', N'', N'phpcourse', N'1612411395', N'1612411515', N'0', N'1')
+
+-- ----------------------------
 -- Table article_data
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[{[FoundPHP]}article_data]') AND type IN ('U'))
@@ -485,158 +638,6 @@ EXEC sp_addextendedproperty
 'TABLE', N'{[FoundPHP]}article_vote_logs'
 GO
 
--- ----------------------------
--- Table articles
--- ----------------------------
-IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[{[FoundPHP]}articles]') AND type IN ('U'))
-	DROP TABLE [dbo].[{[FoundPHP]}articles]
-GO
-CREATE TABLE [dbo].[{[FoundPHP]}articles] (
-  [aid] int IDENTITY(1,1) NOT NULL,
-  [uid] int  NOT NULL,
-  [cate_id] int  NOT NULL,
-  [page_id] int  NULL,
-  [lang] nvarchar(10) COLLATE Chinese_PRC_CI_AS NULL,
-  [titles] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [pinyin] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [smarty_title] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [keywords] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [description] nvarchar(max) COLLATE Chinese_PRC_CI_AS  NULL,
-  [result] nvarchar(max) COLLATE Chinese_PRC_CI_AS  NULL,
-  [thumbnail] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [pagekey] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NULL,
-  [pageurl] nvarchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [author] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NOT NULL,
-  [editor] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NULL,
-  [cases] nvarchar(60) COLLATE Chinese_PRC_CI_AS  NULL,
-  [date_add] int  NULL,
-  [date_edit] int  NULL,
-  [valid] tinyint  NULL,
-  [views] int  NULL
-)
-GO
-ALTER TABLE [dbo].[{[FoundPHP]}articles] SET (LOCK_ESCALATION = TABLE)
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'作者id',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'uid'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'分类id',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'cate_id'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章分页id',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'page_id'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'标题',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'titles'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'对应文章的拼音标题',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'pinyin'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'智能系统分析的标题',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'smarty_title'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'关键字',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'keywords'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'页面介绍',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'description'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'结果注释说明',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'result'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章缩略图',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'thumbnail'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章地址关键词',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'pagekey'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章链接',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'pageurl'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章作者',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'author'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'编辑作者',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'editor'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章类型',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'cases'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'添加日期',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'date_add'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'编辑日期',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'date_edit'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'设置文章是否有效，0等待审核，1审核成功，-1审核失败',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'valid'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'查看次数',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles',
-'COLUMN', N'views'
-GO
-EXEC sp_addextendedproperty
-'MS_Description', N'文章主表',
-'SCHEMA', N'dbo',
-'TABLE', N'{[FoundPHP]}articles'
-GO
-INSERT INTO [dbo].[{[FoundPHP]}articles] ([aid], [uid], [cate_id], [page_id], [titles], [pinyin], [smarty_title], [keywords], [description], [result], [thumbnail], [pagekey], [pageurl], [author], [editor], [cases], [date_add], [date_edit], [valid], [views]) VALUES (N'1', N'1', N'1687', NULL, N'欢迎来到FoundPHP 开发世界', NULL, N'FoundPHP 框架是非常优秀的PHP开发框架', N'', N'FoundPHP 是目前唯一同时运行PHP5/PHP7/PHP8的开发框架。', N'', N'', N'', N'http://www.foundphp.com', N'Admin', N'', N'phpcourse', N'1612411395', N'1612411515', N'0', N'1')
 GO
 -- ----------------------------
 -- Table articles_likes

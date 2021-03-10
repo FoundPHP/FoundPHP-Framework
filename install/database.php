@@ -6,11 +6,11 @@
 *	此软件为授权使用软件，请参考软件协议。
 *	http://www.foundphp.com/?m=agreement
 */
+
 	$title	.= ('数据库安装');
 	$config_file		= '../data/config.php';
 	include $config_file;
 	chdir('../');
-//	$config['db']['sqllog']='./';
 	//载入设置数据库
 	$db							= load('class/database/dbo','FoundPHP_dbo',$config['db']);
 	chdir('install/');
