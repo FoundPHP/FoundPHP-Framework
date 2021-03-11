@@ -1,12 +1,12 @@
 <?php
-/*	(C)2006-2020 FoundPHP Framework.
+/*	(C)2006-2021 FoundPHP Framework.
 *	   name: Database Object
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com
 *	 author: 孟大川
-*	version: v3.210306
+*	version: v3.210311
 *	  start: 2006-05-24
-*	 update: 2021-03-06
+*	 update: 2021-03-11
 *	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
 *	此软件为授权使用软件，请参考软件协议。
@@ -139,16 +139,18 @@ class FoundPHP_dbo{
 		$dblink			= $this->DB->DBLink($set);
 		@$this->dbhost	= $set['dbhost'];
 		@$this->dbport	= $set['dbport'];
-		@$this->dbname	= $set['dbname'];
+		if (!empty($set['dbname'])){
+			@$this->dbname	= $set['dbname'];
+		}
 		@$this->dbuser	= $set['dbuser'];
 		@$this->charset	= $set['charset'];
 		$error			= $this->db_name.' '.$this->lang['connect_die'].' (SERVER:'.$set['dbhost'].((trim($set['dbuser'])=='')?'':' USER:'.$set['dbuser']).((trim($set['dbname'])=='')?'':' DB:'.$set['dbname']).') '.$this->lang['connect_check'];
 		switch($dblink){
 			case 4://http://go.microsoft.com/fwlink/?LinkId=163712
+			echo 1121;
 				$error	= $set['dbhost'].' '.$this->lang['odbc_driver'];
 				$this->log_write("\n".$error,'#008000');
 				function_exists('foundphp_error')?foundphp_error($error):die($error);
-				exit;
 			break;
 			case 3:
 				$error	= $set['dbhost'].' '.$this->lang['connect_pwssword'];

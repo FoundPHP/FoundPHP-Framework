@@ -1,5 +1,5 @@
 <?php
-/*	(C)2006-2020 FoundPHP Framework.
+/*	(C)2006-2021 FoundPHP Framework.
 *	   name: Database Object
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com

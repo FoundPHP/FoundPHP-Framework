@@ -1,12 +1,12 @@
 <?php
-/*	(C)2006-2020 FoundPHP Framework.
+/*	(C)2006-2021 FoundPHP Framework.
 *	   name: Database Object
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com
 *	 author: 孟大川
-*	version: v3.210226
+*	version: v3.21311
 *	  start: 2006-05-24
-*	 update: 2021-02-26
+*	 update: 2021-03-11
 *	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
 *	此软件为授权使用软件，请参考软件协议。
@@ -17,10 +17,16 @@ Class Dirver_sqlsrv{
 	public $LinkID;
 	//连接数据库
 	function DBLink($dba=''){
-		$this->LinkID	= sqlsrv_connect($dba['dbhost'].($dba['dbport']!=''?','.$dba['dbport']:''), array( "Database"=>$dba['dbname'], "UID"=>$dba['dbuser'], "PWD"=>$dba['dbpass'],'CharacterSet' => "UTF-8"));
+		$info			=  array("UID"=>$dba['dbuser'], "PWD"=>$dba['dbpass'],'CharacterSet' => "UTF-8");
+		if (!empty($dba['dbname'])){
+			$info["Database"]	= $dba['dbname'];
+		}
+		$this->LinkID	= sqlsrv_connect($dba['dbhost'].($dba['dbport']!=''?','.$dba['dbport']:''),$info);
 		$info	= sqlsrv_errors();
 		if(!empty($info[1][2])){
-			return 4;
+			if (strstr($info[1][2],'://')){
+				return 4;
+			}
 		}
 		if (!$this->LinkID){return 2;}
 		$this->charset	= $dba['charset'];
