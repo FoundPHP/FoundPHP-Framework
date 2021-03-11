@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>{title}</title>
+	<link href="{style_dir}bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="{style_dir}font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="images/style.css" />
+	<link href="images/jquery.wizzy.css" rel="stylesheet">
+	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+	<script>
+		var style_dir	= '{style_dir}';
+	</script>
+	<script src="{style_dir}js/global.js"></script>
+</head>
+<body>
+
+<div class="argument">
+	<div class="container">
+		<div class="col-md-12 col-sm-12 arg_bg">
+			<div class="argument_title">
+				<div class="pull-left arg_span">
+					<span style="padding-right:10px;"><lang>FoundPHP FrameWork</lang></span><span style="border-left:solid 1px #fff;padding:0 0 0 10px;"><lang>安装向导</lang></span>
+				</div>
+				<div class="pull-right">
+					<span><small>{FoundPHP_Ver}</small></span>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="step">
+			<!-- Start Wizzy -->
+			<div class="wz-wrapper wizzy">
+					<div class="wz-body">
+						<div class="wz-step">
+							<table class="table">
+								<div class="col-md-12 col-xs-12 input-title">
+									<lang>环境检查</lang>
+								</div>
+								<tr>
+									<td><lang>项目</lang></td>
+									<td><lang>所需配置</lang></td>
+									<td><lang>当前服务器</lang></td>
+								</tr>
+								<tr>
+									<td><lang>操作系统</lang></td>
+									<td>Windows/Linux/Unix/Macos</td>
+									<td><i class="glyphicon glyphicon-ok" style="color:#2ecc71"></i> {run:echo php_uname('s');}</td>
+								</tr>
+								<tr>
+									<td><lang>平台</lang></td>
+									<td>Apache/Nginx/IIS</td>
+									<td>{software}</td>
+								</tr>
+								<tr>
+									<td><lang>PHP版本</lang></td>
+									<td>5.x/7.x/8.x</td>
+									<td>{run:echo (PHP_VERSION>=5.2)?$right.' '.PHP_VERSION:$error.' '.PHP_VERSION}</td>
+								</tr>
+								<tr>
+									<td><lang>附件上传</lang></td>
+									<td><lang>不限制 (建议20M)</lang></td>
+									<td><i class="glyphicon glyphicon-ok" style="color:#2ecc71"></i> {attachmentupload}</td>
+								</tr>
+								<tr>
+									<td><lang>GD库</lang></td>
+									<td>1.0</td>
+									<td>{run:echo $gdversion=='noext'?$error_suggest.' <lang>建议开启(用于照片合成与压缩处理)</lang>':$right.' '.$gdversion}</td>
+								</tr>
+								<tr>
+									<td><lang>CURL库</lang></td>
+									<td><lang>不限制</lang></td>
+									<td>{run:echo $curl?$right.' '.$curl:$error_suggest.' <lang>建议开启(用于PHP抓取数据或异步请求)</lang>'}</td>
+								</tr>
+								<!-- IF(floatval(PHP_VERSION)>5.6) -->
+								<tr>
+									<td><lang>OpenSSL</lang></td>
+									<td><lang>PHP7/PHP8必须开启</lang></td>
+									<td>{openssl}</td>
+								</tr>
+								<!-- END -->
+								<tr>
+									<td><lang>ZIP</lang></td>
+									<td><lang>必须开启</lang></td>
+									<td>{zip}</td>
+								</tr>
+								
+								<tr>
+									<td><lang>磁盘空间</lang></td>
+									<td>16.8MB</td>
+									<td>{run:echo ($root_dirsize>=66)?$right.' '.($root_dirsize>1024?((int)($root_dirsize/1024).'GB'):" $root_dirsize"."MB"):$error.' '.($root_dirsize>1024?((int)($root_dirsize/1024).'GB'):" $root_dirsize"."MB")}</td>
+								</tr>
+								<tr>
+									<td><lang>表单提交值</lang></td>
+									<td>1000</td>
+									<td>{run:echo ini_get('max_input_vars')}（如权限超多时需要设置3000）</td>
+								</tr>
+							</table>
+							
+							<table class="table">
+								<div class="col-md-12 col-xs-12 input-title">
+									<lang>目录权限</lang>
+								</div>
+								<tr>
+									<td>
+										<div id="main1" >FoundPHP FrameWork</div>
+										<div id="child1" >
+											<ul>
+												<!-- $get_list AS $k=>$v -->
+												<li style="height: 26px;"><span class="dir_box" >
+														<span class="dir_left"><img src="images/join.gif"/><!-- $i=0;$i<=($v['depth']-1);$i++ --><img src="images/link.gif"/><!-- END --><img src="images/{run:echo $v['type']=='folder'?'folder.png':'php.jpg'}" height="20"/>&nbsp;{k}</span>
+														<div class="dir_right">
+															<span>{v['chmod']}</span>
+															<span><!-- IF($v['type']=='folder') -->{run:echo $v['chmod']>700?$right:$error;}<!-- ELSE -->{run:echo $v['chmod']>600?$right:$error;}<!-- END --> {run: $error = ($dir_info[$k]['status']=='error'?1:0)}</span>
+														</div>
+														<div class="clear"></div>
+												</span></li>
+												<!-- END -->
+											</ul>
+											
+										</div>
+										<!-- IF(!empty($error)) -->
+										<font color="red"><lang>请根据错误提示将目录及文件设置为可写权限，否则系统无法继续安装。</lang></font>
+										<!-- END -->
+									</td>
+									
+								</tr>
+								
+							</table>
+						</div>
+						
+					
+					
+				</div>
+			</div>
+				<div class="input-btn">
+					<button type="button" class="btn btn-default pull-left back" onclick="location='index.php?a=select'">上一步</button>
+					<button class="btn btn-info pull-right next" onclick="check_info();return false;"><lang>下一步</lang></button>
+				</div>
+				
+		</div>
+	</div>
+	FoundPHP Framework ©2005-2021 Support PHP5, PHP7, PHP8 | <a href="http://www.foundphp.com" target="_blank">http://www.foundphp.com</a>
+	<br><br>
+</div>
+</body>
+
+<script>
+	function check_info(){
+		var i_len	=	$('.glyphicon_error').length;
+		if (i_len){
+			sys_error('<lang>您的系统环境缺少支持或目录权限无法写入！</lang>',5);
+			return false;
+		}else{
+			location = 'index.php?a=input';
+		}
+	}
+</script>
+
+</html>
