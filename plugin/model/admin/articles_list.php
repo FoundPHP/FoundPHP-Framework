@@ -1,5 +1,5 @@
 <?php
-/*	(C)2005-2019 FoundPHP Framework.
+/*	(C)2005-2021 FoundPHP Framework.
 *	官网：http://www.FoundPHP.com  原网站：http://www.systn.com
 *	邮箱：master@foundphp.com
 *	This is not a freeware, use is subject to license terms.
@@ -13,15 +13,13 @@ load('function/category');
 
 $table['a']		= 'articles';
 $table['b']		= 'article_data';
-if ($t=='edit'){
 $ljoin['b']		= 'b.aid=a.aid';
-}
 $table['c']		= "category";
 $ljoin['c']		= 'c.cate_id=a.cate_id';
 $table['d']		= "articles_relation";
 
 
-$cases			= 'phpcourse';
+$cases			= 'articles';
 
 $t_index		= 'aid';						//索引id
 if ($t=='edit'){
@@ -29,7 +27,7 @@ $t_field		= 'a.*,b.*';			//字段
 }else {
 $t_field		= 'a.*,c.cate_name';			//字段
 }
-$t_where		= "a.cases='$cases'";						//条件
+$t_where		= "a.cases='$cases' AND a.lang='$FOUNDPHP_LANG'";						//条件
 $t_order		= 'a.date_edit DESC';		//排序
 
 //添加用户时的时间与ip
@@ -158,10 +156,6 @@ $insert[$table['b']]	= array(
 					'dateline'	=> array(
 						'ope'		=> 'intval',				//trim 去空，boolval布尔值,intval整数值，floatval 浮点值
 						't'			=> "add",
-					),
-					'page_num'	=> array(
-						'ope'		=> 'intval',				//trim 去空，boolval布尔值,intval整数值，floatval 浮点值
-						't'			=> "edit",
 					),
 					
 				);
