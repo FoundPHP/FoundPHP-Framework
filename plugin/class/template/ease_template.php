@@ -4,9 +4,9 @@
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com
 *	 author: 孟大川
-*	version: 1.21.34
+*	version: 1.21.311
 *	  start: 2013-02-19
-*	 update: 2021-03-04
+*	 update: 2021-03-11
 *	support: >=PHP5.4,PHP7,PHP8
 *	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
@@ -153,7 +153,7 @@ class FoundPHP_template{
 		//来自FoundPHP框架自动处理
 		if (@constant('FoundPHP.com')==true){
 			$this->Language			= $set['Language'];
-			$this->Language_name	= ($GLOBALS['m']==''?'':'_'.$GLOBALS['m']).'_'.$GLOBALS['a'];
+			$this->Language_name	= (empty($GLOBALS['m'])?'':'_'.$GLOBALS['m']).(!empty($GLOBALS['a'])?'_'.$GLOBALS['a']:'');
 		}else{
 			if ($set['Language']!='' && $set['Language']!='zh'){
 				$this->Language		= $set['Language'];
@@ -845,8 +845,10 @@ class FoundPHP_template{
 			}
 			
 			//合并目录数组
-			if(is_array($adds_ary)){
-				$this->ImgDir = (!in_array($adds_ary,$this->ImgDir))?@array_merge($adds_ary, $this->ImgDir):$adds_ary;
+			if (!empty($adds_ary)){
+				if(is_array($adds_ary)){
+					$this->ImgDir = (!in_array($adds_ary,$this->ImgDir))?@array_merge($adds_ary, $this->ImgDir):$adds_ary;
+				}
 			}
 			
 			if(is_array($this->ImgDir)){
