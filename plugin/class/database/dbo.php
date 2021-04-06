@@ -4,9 +4,9 @@
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com
 *	 author: 孟大川
-*	version: v3.210311
+*	version: v3.210406
 *	  start: 2006-05-24
-*	 update: 2021-03-11
+*	 update: 2021-04-06
 *	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
 *	此软件为授权使用软件，请参考软件协议。
@@ -940,6 +940,7 @@ class FoundPHP_dbo{
 			}else {
 				$mpurl1 .= '?';
 			}
+			if (empty($set['js'])){$set['js'] = '';}
 			
 			$show_num	= $num>0?'<li><a href="#" onclick="return false;">'.$db->lang['page_total1'].number_format($num,0).$db->lang['page_total2'].'</a></li>':'';
 			$multipage .= '<nav class="text-center pagenav"><ul class="pagination">'.$show_num;
