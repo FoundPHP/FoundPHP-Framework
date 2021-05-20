@@ -199,12 +199,8 @@
 	function taction($set_id=0,$die_power=''){
 		global $aus,$dls;
 		$now_powers	= $GLOBALS['now_powers'];
-		if (!empty($now_powers['add'])){
-			unset($now_powers['add']);
-		}
-		if (!empty($now_powers['bdel'])){
-			unset($now_powers['bdel']);
-		}
+		if (isset($now_powers['add'])){unset($now_powers['add']);}
+		if (isset($now_powers['bdel'])){unset($now_powers['bdel']);}
 		//保护系统功能
 		if (is_array($now_powers)){
 			if(@array_key_exists('del',$now_powers)){
