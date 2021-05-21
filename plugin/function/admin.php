@@ -10,7 +10,7 @@
 include_once "globals.php";
 
 // 引入权限
-include_once "globals.php";
+include_once "power.php";
 
 
 	
