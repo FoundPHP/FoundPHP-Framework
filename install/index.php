@@ -16,7 +16,7 @@ $support_database	= array('mysql'=>'MySQL','mariadb'=>'MariaDB','sqlite'=>'SQLit
 $support_port		= array('mysql'=>3306,'mariadb'=>3306,'sqlsrv'=>1433,'pgsql'=>'5432');
 
 //检测是否安装系统
-if (is_file('data/install.lock') && $a!='finish' && $a!='database'){
+if (is_file('data/install.lock') && $a!='finish'){
 	msg('您已经安装了FoundPHP，请不要重新安装。','../',2);
 }
 
