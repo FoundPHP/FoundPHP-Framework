@@ -209,13 +209,18 @@ class FoundPHP_template{
 	*/
 	function set_file(
 				$FileName,
-				$NewDir = ''
+				$NewDir = '',
+				$Path=0
 			){
 		//当前模板名
 		$this->ThisFile  = $FileName.'.'.$this->Ext;
 		//目录地址检测
 		if(trim($NewDir) != ''){
-			$this->FileDir[$this->ThisFile] = strstr($NewDir.'/',$this->TemplateDir)?$NewDir.'/':$this->TemplateDir.$NewDir.'/';
+			if($Path==1){
+				$this->FileDir[$this->ThisFile] = $NewDir.'/';
+			}else{
+				$this->FileDir[$this->ThisFile] = strstr($NewDir.'/',$this->TemplateDir)?$NewDir.'/':$this->TemplateDir.$NewDir.'/';
+			}
 		}else {
 			$this->FileDir[$this->ThisFile] = $this->TemplateDir;
 		}
@@ -1156,7 +1161,6 @@ class FoundPHP_template{
 		if ($set_cookie!=''){
 			$headers[]="cookie: $set_cookie";
 		}
-		
 		//FILES
 		if (is_file($this->curl_file['file']) && $this->curl_file['name']){
 			//数组检测
@@ -1206,6 +1210,7 @@ class FoundPHP_template{
 			$headers[]	= 'Content-Length: '.strlen($post);
 		}
 		
+		print_R($headers);
 		//定义请求类型
 		if ($post!=''){ $this->curl_request	= "POST";}
 		$this->curl_request		= $this->curl_request=='POST'?'POST':'GET';

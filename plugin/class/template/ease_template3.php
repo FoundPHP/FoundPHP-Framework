@@ -4,9 +4,9 @@
 *	 weburl: http://www.FoundPHP.com
 * 	   mail: master@FoundPHP.com
 *	 author: 孟大川
-*	version: 1.21.34
+*	version: 1.21.430
 *	  start: 2005-05-24
-*	 update: 2021-03-04
+*	 update: 2021-04-30
 *	support: PHP4，<=5.3
 *	payment: Free 免费
 *	This is not a freeware, use is subject to license terms.
@@ -69,6 +69,7 @@ class FoundPHP_template{
 	public $Ext			= 'htm';
 	public $get_dir_ext	= array(); 			//格式：array('php','htm');
 	public $get_dir_num	= 0; 				//目录深度：0不限制，2表示目录2级深度
+	public $file_base	= 0;
 	/*
 	*	声明模板用法
 	*/
@@ -169,22 +170,25 @@ class FoundPHP_template{
 	*	设置模板文件
 	*	set_file(文件名,设置目录);
 	*/
-	public function set_file(
+	function set_file(
 				$FileName,
-				$NewDir = ''
+				$NewDir = '',
+				$Path=0
 			){
 		//当前模板名
 		$this->ThisFile  = $FileName.'.'.$this->Ext;
-
 		//目录地址检测
 		if(trim($NewDir) != ''){
-			$this->FileDir[$this->ThisFile] = strstr($NewDir.'/',$this->TemplateDir)?$NewDir.'/':$this->TemplateDir.$NewDir.'/';
+			//指定非设定的模板目录
+			if($Path==1){
+				$this->FileDir[$this->ThisFile] = $NewDir.'/';
+			}else{
+				$this->FileDir[$this->ThisFile] = strstr($NewDir.'/',$this->TemplateDir)?$NewDir.'/':$this->TemplateDir.$NewDir.'/';
+			}
 		}else {
 			$this->FileDir[$this->ThisFile] = $this->TemplateDir;
 		}
-		
 		$this->IncFile[$FileName]		 = $this->FileDir[$this->ThisFile].$this->ThisFile;
-		
 		if(!is_file($this->IncFile[$FileName]) && $this->Copyright==1){
 			die(ET_E_not_exist1.$this->IncFile[$FileName].ET_E_not_exist2);
 		}
@@ -1222,6 +1226,7 @@ class FoundPHP_template{
 	
 	/*
 	*	获取目录
+	*	$tpl->file_base = 1;		//显示基本文件名
 	*	$tpl->get_dir('data',$get_list);
 		print_r($get_list);
 	*/
@@ -1230,6 +1235,7 @@ class FoundPHP_template{
 		foreach ($dir_handle as $file){
 			$files	= $path.'/'.$file;
 			$files	= str_replace('./','',$files);
+			$files	= str_replace('//','/',$files);
 			if ($file!="." && $file!=".."){
 				if (count($this->get_dir_ext)>0){
 					$ext			= pathinfo(strtolower($files),PATHINFO_EXTENSION);
@@ -1260,13 +1266,17 @@ class FoundPHP_template{
 	*	$tpl->get_file('index.php');
 	*/
 	function get_file($files=''){
+		if($this->file_base==1){
+			return basename($files);
+		}
 		if (!empty($files)){
 			$result =  array(
-					'name'	=> basename($files),
-					'dir'	=> str_replace('./','',dirname($files).'/'),
-					'size'	=> filesize($files),
+					'name'		=> basename($files),
+					'dir'		=> str_replace('./','',dirname($files).'/'),
+					'size'		=> filesize($files),
+					'time'		=> filemtime($files),
 					'chmod'	=> substr(sprintf('%o', fileperms($files)), -4),
-					'type'	=> 'file',
+					'type'		=> 'file',
 				);
 			$ext	= pathinfo(strtolower($files),PATHINFO_EXTENSION);
 			if (!empty($ext)){
