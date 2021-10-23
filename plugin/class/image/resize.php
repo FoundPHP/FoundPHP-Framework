@@ -521,6 +521,12 @@ class FoundPHP_image{
 			case'png':
 				imagepng($this->res, $filename);
 			break;
+			case'webp':
+				imagewebp($this->res, $filename);
+			break;
+			case'wbmp':
+				imagewbmp($this->res, $filename);
+			break;
 			default:
 				imagejpeg($this->res, $filename, $this->quality);
 		}
@@ -570,6 +576,12 @@ class FoundPHP_image{
 					case 'jpg':
 					case 'jpeg':
 					return @imagejpeg($image,$save_file.'.'.$ext,$this->quality);
+					break;
+					case 'webp':
+					return imagewebp($image,$save_file.'.'.$ext);
+					break;
+					case 'wbmp':
+					return imagewbmp($image,$save_file.'.'.$ext);
 					break;
 					case 'png':
 					return imagepng($image,$save_file.'.'.$ext);
